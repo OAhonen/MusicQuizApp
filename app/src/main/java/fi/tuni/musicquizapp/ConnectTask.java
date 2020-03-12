@@ -59,7 +59,6 @@ public class ConnectTask extends AsyncTask {
                 String mMessage = response.body().string();
                 try {
                     token = new JSONObject(mMessage);
-                    Log.d("ConnectTask", token.getString("access_token"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -67,5 +66,9 @@ public class ConnectTask extends AsyncTask {
         });
 
         return null;
+    }
+
+    public JSONObject getToken() {
+        return token;
     }
 }
