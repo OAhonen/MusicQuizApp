@@ -36,12 +36,7 @@ public class ConnectTask extends AsyncTask {
             fetchAccessToken();
         // If app is trying to fetch playlist
         } else {
-            try {
-                fetchPlaylist(objects[0]);
-            } catch (JSONException e) {
-                Log.d("ConnectTask", "Not able to fetch playlist");
-                e.printStackTrace();
-            }
+            fetchPlaylist(objects[0]);
         }
 
         try {
@@ -102,8 +97,9 @@ public class ConnectTask extends AsyncTask {
      * @param accessToken access token
      * @throws JSONException error
      */
-    private void fetchPlaylist(Object accessToken) throws JSONException {
+    private void fetchPlaylist(Object accessToken) {
         urlBuilder = HttpUrl.parse("https://api.spotify.com/v1/playlists/37i9dQZEVXbMxcczTSoGwZ").newBuilder();
+        urlBuilder.addQueryParameter("fields", "tracks.items(track(name))");
         url = urlBuilder.build().toString();
 
         request = new Request.Builder()
