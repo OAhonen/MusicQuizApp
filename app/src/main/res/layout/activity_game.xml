@@ -5,26 +5,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainMenu">
+    tools:context=".GameActivity">
 
-    <Button
-        android:text="Play"
-        android:id="@+id/playID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="clicked"/>
-
-    <Button
-        android:text="Highscores"
-        android:id="@+id/scoresID"
+    <TextView
+        android:id="@+id/questionID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
     <Button
-        android:text="Current TOP-10 Tracks"
-        android:id="@+id/top10ID"
+        android:id="@+id/answer1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="clicked"/>
+        android:onClick="answered"/>
 
+    <Button
+        android:id="@+id/answer2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="answered"/>
+
+    <Button
+        android:id="@+id/answer3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="answered"/>
 </LinearLayout>

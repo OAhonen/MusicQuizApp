@@ -22,7 +22,7 @@ public class MainMenu extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             top10Songs = (HashMap) extras.getSerializable("top10");
-            accessToken = extras.getString("accessToken");
+            // accessToken = extras.getString("accessToken");
         }
         Log.d("SONGS from MAINMENU", top10Songs.toString());
     }
@@ -30,6 +30,10 @@ public class MainMenu extends AppCompatActivity {
     public void clicked(View v) {
         if (v.getId() == R.id.top10ID) {
             Intent intent = new Intent(this, TopTracks.class);
+            intent.putExtra("top10", top10Songs);
+            startActivity(intent);
+        } else if (v.getId() == R.id.playID) {
+            Intent intent = new Intent(this, GameActivity.class);
             intent.putExtra("top10", top10Songs);
             startActivity(intent);
         }
