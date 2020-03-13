@@ -95,11 +95,11 @@ public class ConnectTask extends AsyncTask {
     /**
      * Add correct information to url and http-request so it is able to get playlist.
      * @param accessToken access token
-     * @throws JSONException error
      */
     private void fetchPlaylist(Object accessToken) {
         urlBuilder = HttpUrl.parse("https://api.spotify.com/v1/playlists/37i9dQZEVXbMxcczTSoGwZ").newBuilder();
-        urlBuilder.addQueryParameter("fields", "tracks.items(track(name))");
+        //urlBuilder.addQueryParameter("fields", "tracks.items(track(artists(name)))");
+        urlBuilder.addQueryParameter("fields", "tracks.items(track)");
         url = urlBuilder.build().toString();
 
         request = new Request.Builder()
