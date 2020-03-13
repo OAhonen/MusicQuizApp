@@ -1,7 +1,10 @@
 package fi.tuni.musicquizapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,5 +25,13 @@ public class MainMenu extends AppCompatActivity {
             accessToken = extras.getString("accessToken");
         }
         Log.d("SONGS from MAINMENU", top10Songs.toString());
+    }
+
+    public void clicked(View v) {
+        if (v.getId() == R.id.top10ID) {
+            Intent intent = new Intent(this, TopTracks.class);
+            intent.putExtra("top10", top10Songs);
+            startActivity(intent);
+        }
     }
 }
