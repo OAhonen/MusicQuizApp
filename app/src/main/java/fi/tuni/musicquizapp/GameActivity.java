@@ -132,6 +132,7 @@ public class GameActivity extends AppCompatActivity {
         } else {
             Intent intent = new Intent(this, GameOverActivity.class);
             intent.putExtra("userAnswers", userAnswers);
+            intent.putExtra("top10", top10Songs);
             startActivity(intent);
         }
     }

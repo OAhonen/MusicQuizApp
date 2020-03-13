@@ -12,5 +12,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
+    <Button
+        android:text="Main Menu"
+        android:id="@+id/toMenuID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="gameoverClicked"/>
+
+    <Button
+        android:text="Play again"
+        android:id="@+id/playAgainID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="gameoverClicked"/>
+
 
 </LinearLayout>

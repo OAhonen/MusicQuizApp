@@ -101,4 +101,8 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("top10", top10Songs);
         startActivity(intent);
     }
+
+    public HashMap<String, String> getTop10Songs() {
+        return top10Songs;
+    }
 }
