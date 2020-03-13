@@ -21,6 +21,7 @@
         <activity android:name=".GameActivity"/>
         <activity android:name=".MainMenu"/>
         <activity android:name=".TopTracks"/>
+        <activity android:name=".GameOverActivity"/>
     </application>
 
 </manifest>

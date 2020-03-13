@@ -1,5 +1,6 @@
 package fi.tuni.musicquizapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -23,6 +24,7 @@ public class GameActivity extends AppCompatActivity {
     private Button b2;
     private Button b3;
     private int round = 0;
+    private boolean[] userAnswers = new boolean[10];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,20 +102,26 @@ public class GameActivity extends AppCompatActivity {
         if (v.getId() == R.id.answer1) {
             if (b1.getText().equals(artists[round])) {
                 Log.d("GAME", "CORRECT");
+                userAnswers[round] = true;
             } else {
                 Log.d("GAME", "WRONG");
+                userAnswers[round] = false;
             }
         } else if (v.getId() == R.id.answer2) {
             if (b2.getText().equals(artists[round])) {
                 Log.d("GAME", "CORRECT");
+                userAnswers[round] = true;
             } else {
                 Log.d("GAME", "WRONG");
+                userAnswers[round] = false;
             }
         } else if (v.getId() == R.id.answer3) {
             if (b3.getText().equals(artists[round])) {
                 Log.d("GAME", "CORRECT");
+                userAnswers[round] = true;
             } else {
                 Log.d("GAME", "WRONG");
+                userAnswers[round] = false;
             }
         }
 
@@ -121,6 +129,10 @@ public class GameActivity extends AppCompatActivity {
             round++;
             setUpQuestion(round);
             setButtons(round);
+        } else {
+            Intent intent = new Intent(this, GameOverActivity.class);
+            intent.putExtra("userAnswers", userAnswers);
+            startActivity(intent);
         }
     }
 }
