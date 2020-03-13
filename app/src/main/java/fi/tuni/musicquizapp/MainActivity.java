@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private String accessToken;
     private TextView textLoading;
     private ArrayList<String> top10;
-    private Map<String, String> top10Songs;
+    private HashMap<String, String> top10Songs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +33,15 @@ public class MainActivity extends AppCompatActivity {
         connectTask = new ConnectTask();
         connectTask.execute("token");
 
+        getAccessToken();
+        checkPlaylist();
+        getTop10();
+        goToMainMenu();
+
+        Log.d("AccessToken", accessToken);
+    }
+
+    private void getAccessToken() {
         while (true) {
             if (connectTask.getToken() != null) {
                 try {
@@ -45,11 +54,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-
-        checkPlaylist();
-        getTop10();
-
-        Log.d("AccessToken", accessToken);
     }
 
     private void checkPlaylist() {
@@ -89,12 +93,12 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-        Log.d("ALLSONGS", top10Songs.toString());
     }
 
-    public void clicked(View v) {
-        Intent intent = new Intent(this, GameActivity.class);
+    public void goToMainMenu() {
+        Intent intent = new Intent(this, MainMenu.class);
         intent.putExtra("accessToken", accessToken);
+        intent.putExtra("top10", top10Songs);
         startActivity(intent);
     }
 }
