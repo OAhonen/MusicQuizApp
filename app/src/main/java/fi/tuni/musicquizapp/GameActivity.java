@@ -22,6 +22,7 @@ public class GameActivity extends AppCompatActivity {
     private Button b1;
     private Button b2;
     private Button b3;
+    private int round = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +37,8 @@ public class GameActivity extends AppCompatActivity {
             top10Songs = (HashMap) extras.getSerializable("top10");
         }
         setCorrectOrder();
-        setUpQuestion(0);
-        setButtons(0);
+        setUpQuestion(round);
+        setButtons(round);
     }
 
     private void setUpQuestion(int turn) {
@@ -96,6 +97,30 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void answered(View v) {
+        if (v.getId() == R.id.answer1) {
+            if (b1.getText().equals(artists[round])) {
+                Log.d("GAME", "CORRECT");
+            } else {
+                Log.d("GAME", "WRONG");
+            }
+        } else if (v.getId() == R.id.answer2) {
+            if (b2.getText().equals(artists[round])) {
+                Log.d("GAME", "CORRECT");
+            } else {
+                Log.d("GAME", "WRONG");
+            }
+        } else if (v.getId() == R.id.answer3) {
+            if (b3.getText().equals(artists[round])) {
+                Log.d("GAME", "CORRECT");
+            } else {
+                Log.d("GAME", "WRONG");
+            }
+        }
 
+        if (round < 9) {
+            round++;
+            setUpQuestion(round);
+            setButtons(round);
+        }
     }
 }
