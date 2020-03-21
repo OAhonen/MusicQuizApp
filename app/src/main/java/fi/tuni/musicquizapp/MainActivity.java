@@ -5,17 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     private JSONObject token;
@@ -23,8 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private ConnectTask connectTask;
     private String accessToken;
     private TextView textLoading;
-    private ArrayList<String> top10;
-    private HashMap<String, String> top10Songs;
+    private ArrayList<ArtistTrackPair> top10Songs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         connectTask = new ConnectTask();
         connectTask.execute("token");
+        top10Songs = new ArrayList<>();
 
         getAccessToken();
         checkPlaylist();
@@ -73,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getTop10() {
-        top10Songs = new HashMap<>();
         for (int i = 0; i < 10; i++) {
             try {
                 String artist = String.valueOf(playlist.getJSONObject("tracks")
@@ -88,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                         .getJSONObject("track")
                         .getString("name"));
                 Log.d("ARTIST + SONG", artist + " " + song);
-                top10Songs.put(artist, song);
+                top10Songs.add(new ArtistTrackPair(artist, song));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -100,9 +94,5 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("accessToken", accessToken);
         intent.putExtra("top10", top10Songs);
         startActivity(intent);
-    }
-
-    public HashMap<String, String> getTop10Songs() {
-        return top10Songs;
     }
 }

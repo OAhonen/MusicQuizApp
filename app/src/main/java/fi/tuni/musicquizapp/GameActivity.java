@@ -10,13 +10,14 @@ import android.widget.TextView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class GameActivity extends AppCompatActivity {
-    private HashMap<String, String> top10Songs;
+    private ArrayList<ArtistTrackPair> top10Songs;
     private TextView textView;
     private String[] artists = new String[10];
     private String[] tracks = new String[10];
@@ -36,7 +37,7 @@ public class GameActivity extends AppCompatActivity {
         b3 = findViewById(R.id.answer3);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            top10Songs = (HashMap) extras.getSerializable("top10");
+            top10Songs = (ArrayList) extras.getSerializable("top10");
         }
         setCorrectOrder();
         setUpQuestion(round);
@@ -48,11 +49,9 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void setCorrectOrder() {
-        int number = 0;
-        for (HashMap.Entry<String, String> entry : top10Songs.entrySet()) {
-            artists[number] = entry.getKey();
-            tracks[number] = entry.getValue();
-            number++;
+        for (int i = 0; i < top10Songs.size(); i++) {
+            artists[i] = top10Songs.get(i).getArtist();
+            tracks[i] = top10Songs.get(i).getTrack();
         }
     }
 
