@@ -9,12 +9,19 @@ import java.util.ArrayList;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * Current top-10 tracks.
+ */
 public class TopTracks extends AppCompatActivity {
     private ArrayList<ArtistTrackPair> top10Songs;
     private ListView listView;
     private ArrayAdapter<String> arrayAdapter;
     private ArrayList<String> arrayList;
 
+    /**
+     * Get top-10 tracks from extras and put them to listview.
+     * @param savedInstanceState bundle
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +36,9 @@ public class TopTracks extends AppCompatActivity {
         listView.setAdapter(arrayAdapter);
     }
 
+    /**
+     * Set up arraylist.
+     */
     private void setArrayListForAdapter() {
         arrayList = new ArrayList<>();
         for (int i = 0; i < top10Songs.size(); i++) {

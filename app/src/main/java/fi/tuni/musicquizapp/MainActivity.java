@@ -12,6 +12,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+/**
+ * Fetches top tracks from Spotify and moves to MainMenu.
+ */
 public class MainActivity extends AppCompatActivity {
     private JSONObject token;
     private JSONObject playlist;
@@ -20,6 +23,10 @@ public class MainActivity extends AppCompatActivity {
     private TextView textLoading;
     private ArrayList<ArtistTrackPair> top10Songs;
 
+    /**
+     * Creates necessary variables and calls different methods.
+     * @param savedInstanceState bundle
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
         Log.d("AccessToken", accessToken);
     }
 
+    /**
+     * Fetch access token from Spotify.
+     */
     private void getAccessToken() {
         while (true) {
             if (connectTask.getToken() != null) {
@@ -51,6 +61,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Fetch playlist from Spotify.
+     */
     private void checkPlaylist() {
         connectTask = new ConnectTask();
         connectTask.execute(accessToken);
@@ -67,6 +80,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Get top-10 tracks from the playlist and add them to arraylist.
+     */
     private void getTop10() {
         for (int i = 0; i < 10; i++) {
             try {
@@ -89,6 +105,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * After fetching tracks and putting them to arraylist, go to mainmenu.
+     */
     public void goToMainMenu() {
         Intent intent = new Intent(this, MainMenu.class);
         intent.putExtra("accessToken", accessToken);

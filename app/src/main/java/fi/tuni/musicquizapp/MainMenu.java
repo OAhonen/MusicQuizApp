@@ -10,10 +10,17 @@ import java.util.ArrayList;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * Main Menu.
+ */
 public class MainMenu extends AppCompatActivity {
     private ArrayList<ArtistTrackPair> top10Songs;
     private String accessToken;
 
+    /**
+     * When MainMenu is called, it gets top-10 tracks from extras.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +32,10 @@ public class MainMenu extends AppCompatActivity {
         }
     }
 
+    /**
+     * Start the game or check current top-10 tracks.
+     * @param v view
+     */
     public void clicked(View v) {
         if (v.getId() == R.id.top10ID) {
             Intent intent = new Intent(this, TopTracks.class);

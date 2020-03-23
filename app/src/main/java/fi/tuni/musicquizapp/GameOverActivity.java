@@ -11,6 +11,9 @@ import java.util.HashMap;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * Game over activity.
+ */
 public class GameOverActivity extends AppCompatActivity {
     private boolean[] userAnswers;
     private TextView textView;
@@ -18,6 +21,10 @@ public class GameOverActivity extends AppCompatActivity {
     private Button playAgain;
     private ArrayList<ArtistTrackPair> top10Songs;
 
+    /**
+     * Get top-10 tracks and user's answers.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +40,9 @@ public class GameOverActivity extends AppCompatActivity {
         calcResult();
     }
 
+    /**
+     * Check user's answer percentage.
+     */
     private void calcResult() {
         int correctAnswers = 0;
         for (boolean userAnswer : userAnswers) {
@@ -44,6 +54,10 @@ public class GameOverActivity extends AppCompatActivity {
         textView.setText("Nice. You got " + percentage + "% correct answers.");
     }
 
+    /**
+     * Go back to mainmenu or start new game.
+     * @param v view
+     */
     public void gameoverClicked(View v) {
         if (v.getId() == R.id.toMenuID) {
             Intent intent = new Intent(this, MainMenu.class);

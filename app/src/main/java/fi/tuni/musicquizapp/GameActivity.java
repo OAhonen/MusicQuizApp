@@ -16,6 +16,9 @@ import java.util.Random;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * Game activity.
+ */
 public class GameActivity extends AppCompatActivity {
     private ArrayList<ArtistTrackPair> top10Songs;
     private TextView textView;
@@ -27,6 +30,10 @@ public class GameActivity extends AppCompatActivity {
     private int round = 0;
     private boolean[] userAnswers = new boolean[10];
 
+    /**
+     * Get top-10 tracks from extras.
+     * @param savedInstanceState bundle
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,10 +51,17 @@ public class GameActivity extends AppCompatActivity {
         setButtons(round);
     }
 
+    /**
+     * Create question to the user.
+     * @param turn current turn
+     */
     private void setUpQuestion(int turn) {
         textView.setText("Track: " + tracks[turn] + "\nWhose track is this?");
     }
 
+    /**
+     * Put artists and tracks to their own array.
+     */
     private void setCorrectOrder() {
         for (int i = 0; i < top10Songs.size(); i++) {
             artists[i] = top10Songs.get(i).getArtist();
@@ -55,6 +69,11 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Put randomly the correct answer to one of the buttons.
+     * Check that all the button's have different answer.
+     * @param turn current turn
+     */
     private void setButtons(int turn) {
         Random random = new Random();
         int r = random.nextInt(4-1) + 1;
@@ -97,6 +116,10 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Check user's answer and put it to array. Also check if game is over.
+     * @param v view
+     */
     public void answered(View v) {
         if (v.getId() == R.id.answer1) {
             if (b1.getText().equals(artists[round])) {

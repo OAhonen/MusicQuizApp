@@ -17,6 +17,9 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+/**
+ * Connect to Spotify, fetch access token and playlist.
+ */
 public class ConnectTask extends AsyncTask {
     // basicAuth = encoded Spotify client_id + client_secret
     private String basicAuth = "Basic " + "M2UwMzkwMWQ3ZGRlNDZkMmE2MDM2M2MxZWJlOTUwN2Y6NzgyY2Y5ZDQyMjVmNDJkNjhkNjg3NWVlZDE1MDYzNDM=";
@@ -27,6 +30,11 @@ public class ConnectTask extends AsyncTask {
     private RequestBody requestBody;
     private Request request;
 
+    /**
+     * Create http-request.
+     * @param objects check, if program wants to fetch access token or playlist
+     * @return null
+     */
     @Override
     protected Object doInBackground(final Object[] objects) {
         OkHttpClient client = new OkHttpClient();
@@ -50,7 +58,7 @@ public class ConnectTask extends AsyncTask {
             @Override
             public void onFailure(Call call, IOException e) {
                 String mMessage = e.getMessage();
-                Log.w("No response", mMessage);
+                Log.d("No response", mMessage);
                 // call.cancel();
             }
 
