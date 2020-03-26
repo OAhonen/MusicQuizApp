@@ -44,7 +44,7 @@ public class ConnectTask extends AsyncTask {
             fetchAccessToken();
         // If app is trying to fetch playlist
         } else {
-            fetchPlaylist(objects[0]);
+            fetchPlaylist(objects[0], objects[1]);
         }
 
         try {
@@ -104,8 +104,8 @@ public class ConnectTask extends AsyncTask {
      * Add correct information to url and http-request so it is able to get playlist.
      * @param accessToken access token
      */
-    private void fetchPlaylist(Object accessToken) {
-        urlBuilder = HttpUrl.parse("https://api.spotify.com/v1/playlists/37i9dQZEVXbMxcczTSoGwZ").newBuilder();
+    private void fetchPlaylist(Object accessToken, Object countryCode) {
+        urlBuilder = HttpUrl.parse(countryCode.toString()).newBuilder();
         //urlBuilder.addQueryParameter("fields", "tracks.items(track(artists(name)))");
         urlBuilder.addQueryParameter("fields", "tracks.items(track)");
         url = urlBuilder.build().toString();
