@@ -20,6 +20,7 @@ public class GameOverActivity extends AppCompatActivity {
     private Button mainMenu;
     private Button playAgain;
     private ArrayList<ArtistTrackPair> top10Songs;
+    private String accessToken;
 
     /**
      * Get top-10 tracks and user's answers.
@@ -33,6 +34,7 @@ public class GameOverActivity extends AppCompatActivity {
         if (extras != null) {
             userAnswers = extras.getBooleanArray("userAnswers");
             top10Songs = (ArrayList<ArtistTrackPair>) extras.getSerializable("top10");
+            accessToken = extras.getString("accessToken");
         }
         textView = findViewById(R.id.user_result);
         mainMenu = findViewById(R.id.toMenuID);
@@ -62,10 +64,12 @@ public class GameOverActivity extends AppCompatActivity {
         if (v.getId() == R.id.toMenuID) {
             Intent intent = new Intent(this, MainMenu.class);
             intent.putExtra("top10", top10Songs);
+            intent.putExtra("accessToken", accessToken);
             startActivity(intent);
         } else if (v.getId() == R.id.playAgainID) {
             Intent intent = new Intent(this, GameActivity.class);
             intent.putExtra("top10", top10Songs);
+            intent.putExtra("accessToken", accessToken);
             startActivity(intent);
         }
     }
