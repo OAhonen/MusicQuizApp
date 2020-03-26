@@ -45,6 +45,10 @@ public class MainMenu extends AppCompatActivity {
             Intent intent = new Intent(this, GameActivity.class);
             intent.putExtra("top10", top10Songs);
             startActivity(intent);
+        } else if (v.getId() == R.id.settingsID) {
+            Intent intent = new Intent(this, Settings.class);
+            //intent.putExtra("top10", top10Songs);
+            startActivity(intent);
         }
     }
 }
