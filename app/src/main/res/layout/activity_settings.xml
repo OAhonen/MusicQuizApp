@@ -13,4 +13,10 @@
         android:layout_height="wrap_content"
         android:spinnerMode="dropdown"/>
 
+    <Button
+        android:id="@+id/backToMenuButton"
+        android:text="Back to menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="backToMenuClick"/>
 </LinearLayout>
