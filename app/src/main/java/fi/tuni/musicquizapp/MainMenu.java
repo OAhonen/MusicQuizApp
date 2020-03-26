@@ -28,7 +28,7 @@ public class MainMenu extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             top10Songs = (ArrayList<ArtistTrackPair>) extras.getSerializable("top10");
-            // accessToken = extras.getString("accessToken");
+            accessToken = extras.getString("accessToken");
         }
     }
 
@@ -47,7 +47,7 @@ public class MainMenu extends AppCompatActivity {
             startActivity(intent);
         } else if (v.getId() == R.id.settingsID) {
             Intent intent = new Intent(this, Settings.class);
-            //intent.putExtra("top10", top10Songs);
+            intent.putExtra("accessToken", accessToken);
             startActivity(intent);
         }
     }
