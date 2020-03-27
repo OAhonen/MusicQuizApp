@@ -10,6 +10,7 @@ import android.widget.Spinner;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -31,11 +32,13 @@ public class Settings extends AppCompatActivity {
         if (extras != null) {
             accessToken = extras.getString("accessToken");
         }
-        countriesList = new ArrayList<>(Arrays.asList("Finland", "Sweden", "USA"));
+        countriesList = new ArrayList<>(Arrays.asList("Sweden", "Finland", "USA"));
+        Collections.sort(countriesList);
         arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, countriesList);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         countrySpinner = findViewById(R.id.changeCountryID);
         countrySpinner.setAdapter(arrayAdapter);
+        // countrySpinner.setSelection(1);
         selectedCountry = (String) countrySpinner.getSelectedItem();
         countrySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
