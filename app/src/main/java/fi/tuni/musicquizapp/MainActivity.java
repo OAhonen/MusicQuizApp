@@ -49,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
             goToMainMenu();
         }
 
+        GlobalPrefs.init(this);
+
         Log.d("AccessToken", accessToken);
     }
 
