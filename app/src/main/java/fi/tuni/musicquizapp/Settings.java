@@ -23,6 +23,7 @@ public class Settings extends AppCompatActivity {
     private final String SWEDEN = "https://api.spotify.com/v1/playlists/37i9dQZEVXbLoATJ81JYXz";
     private String selectedCountry;
     private String accessToken;
+    private int countryNumber = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +39,13 @@ public class Settings extends AppCompatActivity {
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         countrySpinner = findViewById(R.id.changeCountryID);
         countrySpinner.setAdapter(arrayAdapter);
-        // countrySpinner.setSelection(1);
+        countrySpinner.setSelection(GlobalPrefs.getCountryNumber());
         selectedCountry = (String) countrySpinner.getSelectedItem();
         countrySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedCountry = countriesList.get(position);
+                countryNumber = position;
             }
 
             @Override
@@ -71,8 +73,11 @@ public class Settings extends AppCompatActivity {
 
     public void backToMenuClick(View v) {
         String result = checkSelectedCountry(selectedCountry);
+        if (!selectedCountry.equals(GlobalPrefs.getCountry())) {
+            GlobalPrefs.setCountryCode(result);
+            GlobalPrefs.setCountryNumber(countryNumber);
+        }
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("countryCode", result);
         intent.putExtra("accessToken", accessToken);
         startActivity(intent);
     }
