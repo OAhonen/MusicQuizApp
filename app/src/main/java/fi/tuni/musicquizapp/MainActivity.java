@@ -11,6 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Fetches top tracks from Spotify and moves to MainMenu.
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private ConnectTask connectTask;
     private String accessToken;
     private ArrayList<ArtistTrackPair> top10Songs;
+    private long timeElapsed;
 
     /**
      * Creates necessary variables and calls different methods.
@@ -31,15 +33,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         top10Songs = new ArrayList<>();
-        Bundle extras = getIntent().getExtras();
-        Log.d("MAIN", String.valueOf(System.currentTimeMillis()));
-        if (extras != null) {
-            accessToken = extras.getString("accessToken");
+        GlobalPrefs.init(this);
+        Log.d("MAINTOKEN", GlobalPrefs.getAccessToken());
+        timeElapsed = TimeUnit.MILLISECONDS.toMinutes(System.currentTimeMillis() - GlobalPrefs.getAccessTokenFetched());
+        if (timeElapsed < 60) {
             checkPlaylist();
             getTop10();
             goToMainMenu();
         } else {
-            GlobalPrefs.init(this);
             connectTask = new ConnectTask();
             connectTask.execute("token");
             getAccessToken();
@@ -58,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     token = connectTask.getToken();
                     accessToken = token.getString("access_token");
+                    GlobalPrefs.setAccessToken(accessToken);
                     connectTask.cancel(true);
                     break;
                 } catch (JSONException e) {
@@ -72,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void checkPlaylist() {
         connectTask = new ConnectTask();
-        connectTask.execute(accessToken, GlobalPrefs.getCountryCode());
+        connectTask.execute(GlobalPrefs.getAccessToken(), GlobalPrefs.getCountryCode());
         while (true) {
             if (connectTask.getPlaylist() != null) {
                 try {
@@ -116,7 +118,6 @@ public class MainActivity extends AppCompatActivity {
      */
     public void goToMainMenu() {
         Intent intent = new Intent(this, MainMenu.class);
-        intent.putExtra("accessToken", accessToken);
         intent.putExtra("top10", top10Songs);
         startActivity(intent);
     }

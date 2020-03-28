@@ -25,10 +25,10 @@ public class MainMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainmenu);
+        Log.d("MAINMENUTOKEN", GlobalPrefs.getAccessToken());
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             top10Songs = (ArrayList<ArtistTrackPair>) extras.getSerializable("top10");
-            accessToken = extras.getString("accessToken");
         }
     }
 
@@ -40,16 +40,13 @@ public class MainMenu extends AppCompatActivity {
         if (v.getId() == R.id.top10ID) {
             Intent intent = new Intent(this, TopTracks.class);
             intent.putExtra("top10", top10Songs);
-            intent.putExtra("accessToken", accessToken);
             startActivity(intent);
         } else if (v.getId() == R.id.playID) {
             Intent intent = new Intent(this, GameActivity.class);
             intent.putExtra("top10", top10Songs);
-            intent.putExtra("accessToken", accessToken);
             startActivity(intent);
         } else if (v.getId() == R.id.settingsID) {
             Intent intent = new Intent(this, Settings.class);
-            intent.putExtra("accessToken", accessToken);
             startActivity(intent);
         }
     }

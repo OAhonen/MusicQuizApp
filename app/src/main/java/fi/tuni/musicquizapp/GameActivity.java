@@ -46,7 +46,6 @@ public class GameActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             top10Songs = (ArrayList) extras.getSerializable("top10");
-            accessToken = extras.getString("accessToken");
         }
         setCorrectOrder();
         setUpQuestion(round);
@@ -157,7 +156,6 @@ public class GameActivity extends AppCompatActivity {
             Intent intent = new Intent(this, GameOverActivity.class);
             intent.putExtra("userAnswers", userAnswers);
             intent.putExtra("top10", top10Songs);
-            intent.putExtra("accessToken", accessToken);
             startActivity(intent);
         }
     }

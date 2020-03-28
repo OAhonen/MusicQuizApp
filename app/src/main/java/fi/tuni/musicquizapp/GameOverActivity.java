@@ -2,12 +2,14 @@ package fi.tuni.musicquizapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -30,11 +32,11 @@ public class GameOverActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gameover);
+        Log.d("GOVERTOKEN", GlobalPrefs.getAccessToken());
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             userAnswers = extras.getBooleanArray("userAnswers");
             top10Songs = (ArrayList<ArtistTrackPair>) extras.getSerializable("top10");
-            accessToken = extras.getString("accessToken");
         }
         textView = findViewById(R.id.user_result);
         mainMenu = findViewById(R.id.toMenuID);
@@ -64,12 +66,10 @@ public class GameOverActivity extends AppCompatActivity {
         if (v.getId() == R.id.toMenuID) {
             Intent intent = new Intent(this, MainMenu.class);
             intent.putExtra("top10", top10Songs);
-            intent.putExtra("accessToken", accessToken);
             startActivity(intent);
         } else if (v.getId() == R.id.playAgainID) {
             Intent intent = new Intent(this, GameActivity.class);
             intent.putExtra("top10", top10Songs);
-            intent.putExtra("accessToken", accessToken);
             startActivity(intent);
         }
     }

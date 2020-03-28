@@ -68,6 +68,7 @@ public class ConnectTask extends AsyncTask {
                 try {
                     if (objects[0] == "token") {
                         token = new JSONObject(mMessage);
+                        GlobalPrefs.setAccessTokenFetched(System.currentTimeMillis());
                     } else {
                         playlist = new JSONObject(mMessage);
                         Log.d("PLAYLIST", playlist.toString());

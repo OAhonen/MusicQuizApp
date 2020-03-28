@@ -25,6 +25,7 @@ public class TopTracks extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("TOPTOKEN", GlobalPrefs.getAccessToken());
         setContentView(R.layout.activity_toptracks);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {

@@ -22,17 +22,12 @@ public class Settings extends AppCompatActivity {
     private final String USA = "https://api.spotify.com/v1/playlists/37i9dQZEVXbLRQDuF5jeBp";
     private final String SWEDEN = "https://api.spotify.com/v1/playlists/37i9dQZEVXbLoATJ81JYXz";
     private String selectedCountry;
-    private String accessToken;
     private int countryNumber = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            accessToken = extras.getString("accessToken");
-        }
         countriesList = new ArrayList<>(Arrays.asList("Sweden", "Finland", "USA"));
         Collections.sort(countriesList);
         arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, countriesList);
@@ -41,6 +36,7 @@ public class Settings extends AppCompatActivity {
         countrySpinner.setAdapter(arrayAdapter);
         countrySpinner.setSelection(GlobalPrefs.getCountryNumber());
         selectedCountry = (String) countrySpinner.getSelectedItem();
+        Log.d("SETTOKEN", GlobalPrefs.getAccessToken());
         countrySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -78,7 +74,6 @@ public class Settings extends AppCompatActivity {
             GlobalPrefs.setCountryNumber(countryNumber);
         }
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("accessToken", accessToken);
         startActivity(intent);
     }
 }
