@@ -10,6 +10,7 @@ public abstract class GlobalPrefs {
     private static final String keyCountryCode = "countryCode";
     private static final String keyAccessToken = "accessToken";
     private static final String keyCountryNumber = "countryNumber";
+    private static final String keyAccessTokenFetched = "accessTokenFetched";
 
     // Default countryCode = Finnish playlist
     private static String defCountryCode = "https://api.spotify.com/v1/playlists/37i9dQZEVXbMxcczTSoGwZ";
@@ -46,5 +47,25 @@ public abstract class GlobalPrefs {
 
     public static int getCountryNumber() {
         return prefs.getInt(keyCountryNumber, 0);
+    }
+
+    public static void setAccessTokenFetched(long accessTokenFetched) {
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putLong(keyAccessTokenFetched, accessTokenFetched);
+        editor.commit();
+    }
+
+    public static long getAccessTokenFetched() {
+        return prefs.getLong(keyAccessTokenFetched, 0);
+    }
+
+    public static void setAccessToken(String accessToken) {
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(keyAccessToken, accessToken);
+        editor.commit();
+    }
+
+    public static String getAccessToken() {
+        return prefs.getString(keyAccessToken, null);
     }
 }
