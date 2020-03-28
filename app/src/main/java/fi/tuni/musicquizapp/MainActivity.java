@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
         GlobalPrefs.init(this);
         Log.d("MAINTOKEN", GlobalPrefs.getAccessToken());
         timeElapsed = TimeUnit.MILLISECONDS.toMinutes(System.currentTimeMillis() - GlobalPrefs.getAccessTokenFetched());
+        // If user has used the app recently (max 1 hour ago), only fetch playlist.
+        // Else fetch new access token.
         if (timeElapsed < 60) {
             checkPlaylist();
             getTop10();
