@@ -20,9 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private JSONObject playlist;
     private ConnectTask connectTask;
     private String accessToken;
-    private TextView textLoading;
     private ArrayList<ArtistTrackPair> top10Songs;
-    private String countryCode = "https://api.spotify.com/v1/playlists/37i9dQZEVXbMxcczTSoGwZ";
 
     /**
      * Creates necessary variables and calls different methods.
@@ -36,11 +34,11 @@ public class MainActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             accessToken = extras.getString("accessToken");
-            countryCode = extras.getString("countryCode");
             checkPlaylist();
             getTop10();
             goToMainMenu();
         } else {
+            GlobalPrefs.init(this);
             connectTask = new ConnectTask();
             connectTask.execute("token");
             getAccessToken();
@@ -48,8 +46,6 @@ public class MainActivity extends AppCompatActivity {
             getTop10();
             goToMainMenu();
         }
-
-        GlobalPrefs.init(this);
 
         Log.d("AccessToken", accessToken);
     }
@@ -77,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void checkPlaylist() {
         connectTask = new ConnectTask();
-        connectTask.execute(accessToken, countryCode);
+        connectTask.execute(accessToken, GlobalPrefs.getCountryCode());
         while (true) {
             if (connectTask.getPlaylist() != null) {
                 try {
