@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         top10Songs = new ArrayList<>();
         Bundle extras = getIntent().getExtras();
+        Log.d("MAIN", String.valueOf(System.currentTimeMillis()));
         if (extras != null) {
             accessToken = extras.getString("accessToken");
             checkPlaylist();
@@ -46,8 +47,6 @@ public class MainActivity extends AppCompatActivity {
             getTop10();
             goToMainMenu();
         }
-
-        Log.d("AccessToken", accessToken);
     }
 
     /**
