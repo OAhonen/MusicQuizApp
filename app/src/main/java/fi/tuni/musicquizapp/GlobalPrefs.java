@@ -12,8 +12,9 @@ public abstract class GlobalPrefs {
     private static final String keyCountryNumber = "countryNumber";
     private static final String keyAccessTokenFetched = "accessTokenFetched";
 
-    // Default countryCode = Finnish playlist
+    // Default country & countryCode = Finland
     private static String defCountryCode = "https://api.spotify.com/v1/playlists/37i9dQZEVXbMxcczTSoGwZ";
+    private static String defCountry = "Finland";
 
     public static void init(Context context) {
         prefs = context.getSharedPreferences(keyPrefs, Context.MODE_PRIVATE);
@@ -26,7 +27,7 @@ public abstract class GlobalPrefs {
     }
 
     public static String getCountry() {
-        return prefs.getString(keyCountry, null);
+        return prefs.getString(keyCountry, defCountry);
     }
 
     public static void setCountryCode(String countryCode) {
