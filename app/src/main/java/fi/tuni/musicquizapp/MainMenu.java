@@ -25,7 +25,7 @@ public class MainMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainmenu);
-        Log.d("MAINMENUTOKEN", GlobalPrefs.getAccessToken());
+        // Log.d("MAINMENUTOKEN", GlobalPrefs.getAccessToken());
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             top10Songs = (ArrayList<ArtistTrackPair>) extras.getSerializable("top10");

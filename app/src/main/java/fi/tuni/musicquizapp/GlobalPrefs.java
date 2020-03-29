@@ -16,7 +16,7 @@ public abstract class GlobalPrefs {
     private static String defCountryCode = "https://api.spotify.com/v1/playlists/37i9dQZEVXbMxcczTSoGwZ";
 
     public static void init(Context context) {
-        prefs = context.getSharedPreferences("MusicQuizPrefs", Context.MODE_PRIVATE);
+        prefs = context.getSharedPreferences(keyPrefs, Context.MODE_PRIVATE);
     }
 
     public static void setCountry(String country) {

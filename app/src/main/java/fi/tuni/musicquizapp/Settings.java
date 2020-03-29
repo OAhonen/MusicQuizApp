@@ -68,9 +68,10 @@ public class Settings extends AppCompatActivity {
     }
 
     public void backToMenuClick(View v) {
-        String result = checkSelectedCountry(selectedCountry);
+        String countryCode = checkSelectedCountry(selectedCountry);
         if (!selectedCountry.equals(GlobalPrefs.getCountry())) {
-            GlobalPrefs.setCountryCode(result);
+            GlobalPrefs.setCountry(selectedCountry);
+            GlobalPrefs.setCountryCode(countryCode);
             GlobalPrefs.setCountryNumber(countryNumber);
         }
         Intent intent = new Intent(this, MainActivity.class);

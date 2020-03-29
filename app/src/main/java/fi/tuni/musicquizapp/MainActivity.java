@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         top10Songs = new ArrayList<>();
         GlobalPrefs.init(this);
-        Log.d("MAINTOKEN", GlobalPrefs.getAccessToken());
+        // Log.d("MAINTOKEN", GlobalPrefs.getAccessToken());
         timeElapsed = TimeUnit.MILLISECONDS.toMinutes(System.currentTimeMillis() - GlobalPrefs.getAccessTokenFetched());
         // If user has used the app recently (max 1 hour ago), only fetch playlist.
         // Else fetch new access token.
