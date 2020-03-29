@@ -21,6 +21,7 @@ public class Settings extends AppCompatActivity {
     private final String FINLAND = "https://api.spotify.com/v1/playlists/37i9dQZEVXbMxcczTSoGwZ";
     private final String USA = "https://api.spotify.com/v1/playlists/37i9dQZEVXbLRQDuF5jeBp";
     private final String SWEDEN = "https://api.spotify.com/v1/playlists/37i9dQZEVXbLoATJ81JYXz";
+    private final String NETHERLANDS = "https://api.spotify.com/v1/playlists/37i9dQZEVXbKCF6dqVpDkS";
     private String selectedCountry;
     private int countryNumber = 0;
 
@@ -28,7 +29,7 @@ public class Settings extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        countriesList = new ArrayList<>(Arrays.asList("Sweden", "Finland", "USA"));
+        countriesList = new ArrayList<>(Arrays.asList("Sweden", "Finland", "USA", "Netherlands"));
         Collections.sort(countriesList);
         arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, countriesList);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -62,6 +63,9 @@ public class Settings extends AppCompatActivity {
                 break;
             case "Sweden":
                 result = SWEDEN;
+                break;
+            case "Netherlands":
+                result = NETHERLANDS;
                 break;
         }
         return result;
