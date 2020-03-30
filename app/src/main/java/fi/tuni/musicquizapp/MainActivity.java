@@ -1,11 +1,11 @@
 package fi.tuni.musicquizapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import fi.tuni.musicquizapp.preferences.GlobalPrefs;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.TextView;
 
 import org.json.JSONException;
 import org.json.JSONObject;

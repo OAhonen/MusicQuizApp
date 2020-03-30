@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.Collections;
 
 import androidx.appcompat.app.AppCompatActivity;
+import fi.tuni.musicquizapp.preferences.GlobalPrefs;
 
 public class Settings extends AppCompatActivity {
     private Spinner countrySpinner;

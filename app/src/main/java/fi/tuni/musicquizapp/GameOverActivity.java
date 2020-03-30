@@ -8,10 +8,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.concurrent.TimeUnit;
 
 import androidx.appcompat.app.AppCompatActivity;
+import fi.tuni.musicquizapp.preferences.GlobalPrefs;
 
 /**
  * Game over activity.

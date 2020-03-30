@@ -1,4 +1,4 @@
-package fi.tuni.musicquizapp;
+package fi.tuni.musicquizapp.preferences;
 
 import android.content.Context;
 import android.content.SharedPreferences;
