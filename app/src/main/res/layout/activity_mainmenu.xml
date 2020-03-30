@@ -18,7 +18,8 @@
         android:text="Highscores"
         android:id="@+id/scoresID"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:onClick="clicked"/>
 
     <Button
         android:text="Current TOP-10 Tracks"

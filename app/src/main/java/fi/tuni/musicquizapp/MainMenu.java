@@ -48,6 +48,9 @@ public class MainMenu extends AppCompatActivity {
         } else if (v.getId() == R.id.settingsID) {
             Intent intent = new Intent(this, Settings.class);
             startActivity(intent);
+        } else if (v.getId() == R.id.scoresID) {
+            Intent intent = new Intent(this, Highscore.class);
+            startActivity(intent);
         }
     }
 }

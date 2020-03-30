@@ -23,6 +23,7 @@
         <activity android:name=".TopTracks"/>
         <activity android:name=".GameOverActivity"/>
         <activity android:name=".Settings"/>
+        <activity android:name=".Highscore"/>
     </application>
 
 </manifest>

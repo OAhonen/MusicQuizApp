@@ -77,25 +77,25 @@ public class GameOverActivity extends AppCompatActivity {
             HighscorePrefs.setName2(HighscorePrefs.getName1());
             HighscorePrefs.setCountry2(HighscorePrefs.getCountry1());
             HighscorePrefs.setScore2(HighscorePrefs.getScore1());
-            setVisible();
+            setVisible(View.VISIBLE);
         } else if (correctAnswers >= HighscorePrefs.getScore2()) {
             scorePosition = 2;
             highEnough = true;
             HighscorePrefs.setName3(HighscorePrefs.getName2());
             HighscorePrefs.setCountry3(HighscorePrefs.getCountry2());
             HighscorePrefs.setScore3(HighscorePrefs.getScore2());
-            setVisible();
+            setVisible(View.VISIBLE);
         } else if (correctAnswers >= HighscorePrefs.getScore3()) {
             scorePosition = 3;
             highEnough = true;
-            setVisible();
+            setVisible(View.VISIBLE);
         }
     }
 
-    private void setVisible() {
-        textViewMadeIt.setVisibility(View.VISIBLE);
-        editTextName.setVisibility(View.VISIBLE);
-        saveScore.setVisibility(View.VISIBLE);
+    private void setVisible(int visibility) {
+        textViewMadeIt.setVisibility(visibility);
+        editTextName.setVisibility(visibility);
+        saveScore.setVisibility(visibility);
         textViewMadeIt.setText("You made it to the " + scorePosition + ". place!");
     }
 
@@ -113,6 +113,7 @@ public class GameOverActivity extends AppCompatActivity {
             HighscorePrefs.setCountry3(GlobalPrefs.getCountry());
             HighscorePrefs.setScore3(correctAnswers);
         }
+        setVisible(View.INVISIBLE);
     }
 
     /**
