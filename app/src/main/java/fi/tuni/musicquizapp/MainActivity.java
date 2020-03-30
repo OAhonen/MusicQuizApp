@@ -2,6 +2,7 @@ package fi.tuni.musicquizapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 import fi.tuni.musicquizapp.preferences.GlobalPrefs;
+import fi.tuni.musicquizapp.preferences.HighscorePrefs;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         top10Songs = new ArrayList<>();
         GlobalPrefs.init(this);
+        HighscorePrefs.init(this);
         // Log.d("MAINTOKEN", GlobalPrefs.getAccessToken());
         timeElapsed = TimeUnit.MILLISECONDS.toMinutes(System.currentTimeMillis() - GlobalPrefs.getAccessTokenFetched());
         // If user has used the app recently (max 1 hour ago), only fetch playlist.
