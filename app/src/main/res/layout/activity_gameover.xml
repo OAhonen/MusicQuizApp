@@ -8,7 +8,7 @@
     tools:context=".GameOverActivity">
 
     <TextView
-        android:id="@+id/user_result"
+        android:id="@+id/userResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
@@ -25,6 +25,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="gameoverClicked"/>
+
+    <TextView
+        android:id="@+id/madeItToScores"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/editName"
+        android:visibility="invisible"
+        android:hint="Name"
+        android:inputType="text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:text="Save"
+        android:id="@+id/saveScore"
+        android:visibility="invisible"
+        android:onClick="saveToScores"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 
 </LinearLayout>
