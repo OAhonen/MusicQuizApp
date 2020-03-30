@@ -32,7 +32,7 @@ public class HighscorePrefs {
 
     public static void setName2(String name) {
         SharedPreferences.Editor editor = prefs.edit();
-        editor.putString(keyName1, name);
+        editor.putString(keyName2, name);
         editor.commit();
     }
 
@@ -42,7 +42,7 @@ public class HighscorePrefs {
 
     public static void setName3(String name) {
         SharedPreferences.Editor editor = prefs.edit();
-        editor.putString(keyName1, name);
+        editor.putString(keyName3, name);
         editor.commit();
     }
 
