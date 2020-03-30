@@ -91,20 +91,23 @@ public class GameOverActivity extends AppCompatActivity {
     }
 
     public void saveToScores(View v) {
-        if (scorePosition == 1) {
-            HighscorePrefs.setName1(editTextName.getText().toString());
-            HighscorePrefs.setCountry1(GlobalPrefs.getCountry());
-            HighscorePrefs.setScore1(correctAnswers);
-        } else if (scorePosition == 2) {
-            HighscorePrefs.setName2(editTextName.getText().toString());
-            HighscorePrefs.setCountry2(GlobalPrefs.getCountry());
-            HighscorePrefs.setScore2(correctAnswers);
-        } else if (scorePosition == 3) {
-            HighscorePrefs.setName3(editTextName.getText().toString());
-            HighscorePrefs.setCountry3(GlobalPrefs.getCountry());
-            HighscorePrefs.setScore3(correctAnswers);
+        String name = editTextName.getText().toString();
+        if (name.length() < 16 && name.length() > 0) {
+            if (scorePosition == 1) {
+                HighscorePrefs.setName1(name);
+                HighscorePrefs.setCountry1(GlobalPrefs.getCountry());
+                HighscorePrefs.setScore1(correctAnswers);
+            } else if (scorePosition == 2) {
+                HighscorePrefs.setName2(name);
+                HighscorePrefs.setCountry2(GlobalPrefs.getCountry());
+                HighscorePrefs.setScore2(correctAnswers);
+            } else if (scorePosition == 3) {
+                HighscorePrefs.setName3(name);
+                HighscorePrefs.setCountry3(GlobalPrefs.getCountry());
+                HighscorePrefs.setScore3(correctAnswers);
+            }
+            setVisible(View.INVISIBLE);
         }
-        setVisible(View.INVISIBLE);
     }
 
     /**

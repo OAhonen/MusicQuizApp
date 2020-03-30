@@ -35,7 +35,7 @@
     <EditText
         android:id="@+id/editName"
         android:visibility="invisible"
-        android:hint="Name"
+        android:hint="Name (1-15 characters)"
         android:inputType="text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
