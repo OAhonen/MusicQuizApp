@@ -20,16 +20,12 @@ import fi.tuni.musicquizapp.preferences.HighscorePrefs;
 public class GameOverActivity extends AppCompatActivity {
     private boolean[] userAnswers;
     private TextView textViewResult;
-    private Button mainMenu;
-    private Button playAgain;
     private ArrayList<ArtistTrackPair> top10Songs;
-    private String accessToken;
     private int correctAnswers = 0;
     private TextView textViewMadeIt;
     private EditText editTextName;
     private Button saveScore;
     private int scorePosition = 0;
-    private boolean highEnough = false;
 
     /**
      * Get top-10 tracks and user's answers.
@@ -45,8 +41,6 @@ public class GameOverActivity extends AppCompatActivity {
             top10Songs = (ArrayList<ArtistTrackPair>) extras.getSerializable("top10");
         }
         textViewResult = findViewById(R.id.userResult);
-        mainMenu = findViewById(R.id.toMenuID);
-        playAgain = findViewById(R.id.playAgainID);
         textViewMadeIt = findViewById(R.id.madeItToScores);
         editTextName = findViewById(R.id.editName);
         saveScore = findViewById(R.id.saveScore);
@@ -70,7 +64,6 @@ public class GameOverActivity extends AppCompatActivity {
     private void checkHighScore() {
         if (correctAnswers >= HighscorePrefs.getScore1()) {
             scorePosition = 1;
-            highEnough = true;
             HighscorePrefs.setName3(HighscorePrefs.getName2());
             HighscorePrefs.setCountry3(HighscorePrefs.getCountry2());
             HighscorePrefs.setScore3(HighscorePrefs.getScore2());
@@ -80,14 +73,12 @@ public class GameOverActivity extends AppCompatActivity {
             setVisible(View.VISIBLE);
         } else if (correctAnswers >= HighscorePrefs.getScore2()) {
             scorePosition = 2;
-            highEnough = true;
             HighscorePrefs.setName3(HighscorePrefs.getName2());
             HighscorePrefs.setCountry3(HighscorePrefs.getCountry2());
             HighscorePrefs.setScore3(HighscorePrefs.getScore2());
             setVisible(View.VISIBLE);
         } else if (correctAnswers >= HighscorePrefs.getScore3()) {
             scorePosition = 3;
-            highEnough = true;
             setVisible(View.VISIBLE);
         }
     }
