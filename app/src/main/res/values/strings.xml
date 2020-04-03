@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Music Quiz App</string>
+    <string name="play">Play</string>
+    <string name="highscores">High Scores</string>
+    <string name="curTop10">Current Top-10 Tracks</string>
+    <string name="settings">Settings</string>
+    <string name="mainmenu">Main Menu</string>
+    <string name="playagain">Play Again</string>
+    <string name="namehint">Name (1–15 characters)</string>
+    <string name="save">Save</string>
 </resources>

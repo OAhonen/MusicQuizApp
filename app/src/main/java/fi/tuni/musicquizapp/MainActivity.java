@@ -45,8 +45,6 @@ public class MainActivity extends AppCompatActivity {
             getTop10();
             goToMainMenu();
         } else {
-            connectTask = new ConnectTask();
-            connectTask.execute("token");
             getAccessToken();
             checkPlaylist();
             getTop10();
@@ -58,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
      * Fetch access token from Spotify.
      */
     private void getAccessToken() {
+        connectTask = new ConnectTask();
+        connectTask.execute("token");
         while (true) {
             if (connectTask.getToken() != null) {
                 try {

@@ -13,14 +13,14 @@
         android:layout_height="wrap_content"/>
 
     <Button
-        android:text="Main Menu"
+        android:text="@string/mainmenu"
         android:id="@+id/toMenuID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="gameoverClicked"/>
 
     <Button
-        android:text="Play again"
+        android:text="@string/playagain"
         android:id="@+id/playAgainID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,13 +35,13 @@
     <EditText
         android:id="@+id/editName"
         android:visibility="invisible"
-        android:hint="Name (1-15 characters)"
+        android:hint="@string/namehint"
         android:inputType="text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
     <Button
-        android:text="Save"
+        android:text="@string/save"
         android:id="@+id/saveScore"
         android:visibility="invisible"
         android:onClick="saveToScores"

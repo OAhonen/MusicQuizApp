@@ -8,28 +8,28 @@
     tools:context=".MainMenu">
 
     <Button
-        android:text="Play"
+        android:text="@string/play"
         android:id="@+id/playID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="clicked"/>
 
     <Button
-        android:text="Highscores"
+        android:text="@string/highscores"
         android:id="@+id/scoresID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="clicked"/>
 
     <Button
-        android:text="Current TOP-10 Tracks"
+        android:text="@string/curTop10"
         android:id="@+id/top10ID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="clicked"/>
 
     <Button
-        android:text="Settings"
+        android:text="@string/settings"
         android:id="@+id/settingsID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
