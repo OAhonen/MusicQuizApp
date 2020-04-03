@@ -10,15 +10,15 @@
         android:id="@+id/rowMain">
 
         <TextView
-            android:text="Position"
+            android:text="@string/position"
             android:id="@+id/colPosition"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="0.5"
             android:textAlignment="center"/>
 
         <TextView
-            android:text="Name"
+            android:text="@string/name"
             android:id="@+id/colName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -26,7 +26,7 @@
             android:textAlignment="center"/>
 
         <TextView
-            android:text="Score"
+            android:text="@string/score"
             android:id="@+id/colScore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
             android:textAlignment="center"/>
 
         <TextView
-            android:text="Playlist"
+            android:text="@string/playlist"
             android:id="@+id/colPlaylist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -46,11 +46,11 @@
         android:id="@+id/rowFirst">
 
         <TextView
-            android:text="1."
+            android:text="@string/first"
             android:id="@+id/colPositionFirst"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="0.5"
             android:textAlignment="center"/>
 
         <TextView
@@ -79,11 +79,11 @@
         android:id="@+id/rowSecond">
 
         <TextView
-            android:text="2."
+            android:text="@string/second"
             android:id="@+id/colPositionSecond"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="0.5"
             android:textAlignment="center"/>
 
         <TextView
@@ -112,11 +112,11 @@
         android:id="@+id/rowThird">
 
         <TextView
-            android:text="3."
+            android:text="@string/third"
             android:id="@+id/colPositionThird"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="0.5"
             android:textAlignment="center"/>
 
         <TextView
