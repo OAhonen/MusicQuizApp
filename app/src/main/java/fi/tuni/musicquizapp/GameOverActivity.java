@@ -61,43 +61,55 @@ public class GameOverActivity extends AppCompatActivity {
         textViewResult.setText("Nice. You got " + percentage + "% correct answers.");
     }
 
+    /**
+     * Check, if user made it to the high scores, set position in high scores and show
+     * the form to save score.
+     */
     private void checkHighScore() {
-        if (correctAnswers >= HighscorePrefs.getScore1()) {
-            scorePosition = 1;
-            HighscorePrefs.setName3(HighscorePrefs.getName2());
-            HighscorePrefs.setCountry3(HighscorePrefs.getCountry2());
-            HighscorePrefs.setScore3(HighscorePrefs.getScore2());
-            HighscorePrefs.setName2(HighscorePrefs.getName1());
-            HighscorePrefs.setCountry2(HighscorePrefs.getCountry1());
-            HighscorePrefs.setScore2(HighscorePrefs.getScore1());
-            setVisible(View.VISIBLE);
-        } else if (correctAnswers >= HighscorePrefs.getScore2()) {
-            scorePosition = 2;
-            HighscorePrefs.setName3(HighscorePrefs.getName2());
-            HighscorePrefs.setCountry3(HighscorePrefs.getCountry2());
-            HighscorePrefs.setScore3(HighscorePrefs.getScore2());
-            setVisible(View.VISIBLE);
-        } else if (correctAnswers >= HighscorePrefs.getScore3()) {
-            scorePosition = 3;
-            setVisible(View.VISIBLE);
+        if (correctAnswers >= HighscorePrefs.getScore3()) {
+            if (correctAnswers >= HighscorePrefs.getScore1()) {
+                scorePosition = 1;
+            } else if (correctAnswers >= HighscorePrefs.getScore2()) {
+                scorePosition = 2;
+            } else if (correctAnswers >= HighscorePrefs.getScore3()) {
+                scorePosition = 3;
+            }
+            setScoreVisible(View.VISIBLE);
         }
     }
 
-    private void setVisible(int visibility) {
+    /**
+     * Show or hide the high score form.
+     * @param visibility visibility of the form
+     */
+    private void setScoreVisible(int visibility) {
         textViewMadeIt.setVisibility(visibility);
         editTextName.setVisibility(visibility);
         saveScore.setVisibility(visibility);
         textViewMadeIt.setText("You made it to the " + scorePosition + ". place!");
     }
 
+    /**
+     * Save high score to prefs.
+     * @param v view
+     */
     public void saveToScores(View v) {
         String name = editTextName.getText().toString();
         if (name.length() < 16 && name.length() > 0) {
             if (scorePosition == 1) {
+                HighscorePrefs.setName3(HighscorePrefs.getName2());
+                HighscorePrefs.setCountry3(HighscorePrefs.getCountry2());
+                HighscorePrefs.setScore3(HighscorePrefs.getScore2());
+                HighscorePrefs.setName2(HighscorePrefs.getName1());
+                HighscorePrefs.setCountry2(HighscorePrefs.getCountry1());
+                HighscorePrefs.setScore2(HighscorePrefs.getScore1());
                 HighscorePrefs.setName1(name);
                 HighscorePrefs.setCountry1(GlobalPrefs.getCountry());
                 HighscorePrefs.setScore1(correctAnswers);
             } else if (scorePosition == 2) {
+                HighscorePrefs.setName3(HighscorePrefs.getName2());
+                HighscorePrefs.setCountry3(HighscorePrefs.getCountry2());
+                HighscorePrefs.setScore3(HighscorePrefs.getScore2());
                 HighscorePrefs.setName2(name);
                 HighscorePrefs.setCountry2(GlobalPrefs.getCountry());
                 HighscorePrefs.setScore2(correctAnswers);
@@ -106,7 +118,7 @@ public class GameOverActivity extends AppCompatActivity {
                 HighscorePrefs.setCountry3(GlobalPrefs.getCountry());
                 HighscorePrefs.setScore3(correctAnswers);
             }
-            setVisible(View.INVISIBLE);
+            setScoreVisible(View.INVISIBLE);
         }
     }
 
