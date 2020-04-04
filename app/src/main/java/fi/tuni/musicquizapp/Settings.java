@@ -15,6 +15,9 @@ import java.util.Collections;
 import androidx.appcompat.app.AppCompatActivity;
 import fi.tuni.musicquizapp.preferences.GlobalPrefs;
 
+/**
+ * Settings class.
+ */
 public class Settings extends AppCompatActivity {
     private Spinner countrySpinner;
     private ArrayAdapter<String> arrayAdapter;
@@ -53,6 +56,11 @@ public class Settings extends AppCompatActivity {
         });
     }
 
+    /**
+     * Set country's http-address.
+     * @param country country
+     * @return http-address
+     */
     private String checkSelectedCountry(String country) {
         String result = "";
         switch (country) {
@@ -72,6 +80,10 @@ public class Settings extends AppCompatActivity {
         return result;
     }
 
+    /**
+     * Back to menu and set country, if it has changed.
+     * @param v view
+     */
     public void backToMenuClick(View v) {
         String countryCode = checkSelectedCountry(selectedCountry);
         if (!selectedCountry.equals(GlobalPrefs.getCountry())) {

@@ -118,10 +118,18 @@ public class ConnectTask extends AsyncTask {
                 .build();
     }
 
+    /**
+     * Get access token in JSONObject.
+     * @return access token
+     */
     public JSONObject getToken() {
         return token;
     }
 
+    /**
+     * Get playlist in JSONObject.
+     * @return playlist
+     */
     public JSONObject getPlaylist() {
         return playlist;
     }

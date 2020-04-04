@@ -6,8 +6,12 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import fi.tuni.musicquizapp.preferences.HighscorePrefs;
 
+/**
+ * Show high scores.
+ */
 public class Highscore extends AppCompatActivity {
     private TextView n1, n2, n3, s1, s2, s3, c1, c2, c3;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,6 +20,9 @@ public class Highscore extends AppCompatActivity {
         updateTable();
     }
 
+    /**
+     * Find textviews.
+     */
     private void setupTable() {
         n1 = findViewById(R.id.colNameFirst);
         n2 = findViewById(R.id.colNameSecond);
@@ -28,6 +35,9 @@ public class Highscore extends AppCompatActivity {
         c3 = findViewById(R.id.colPlaylistThird);
     }
 
+    /**
+     * Set textviews.
+     */
     private void updateTable() {
         n1.setText(HighscorePrefs.getName1());
         s1.setText(String.valueOf(HighscorePrefs.getScore1()));
