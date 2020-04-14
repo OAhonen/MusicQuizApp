@@ -1,6 +1,8 @@
 package fi.tuni.musicquizapp;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -28,11 +30,15 @@ public class GameActivity extends AppCompatActivity {
     private Button b1;
     private Button b2;
     private Button b3;
+    private Button playPreview;
+    private TextView textPreview;
     private int round = 0;
     private boolean[] userAnswers = new boolean[10];
     private String accessToken;
     private String mode;
     private String hideArtist = "Hide artist";
+    private ArrayList<String> top10PreviewUrls;
+    private MediaPlayer mediaPlayer;
 
     /**
      * Get top-10 tracks from extras.
@@ -47,12 +53,17 @@ public class GameActivity extends AppCompatActivity {
         b1 = findViewById(R.id.answer1);
         b2 = findViewById(R.id.answer2);
         b3 = findViewById(R.id.answer3);
+        playPreview = findViewById(R.id.playPreview);
+        textPreview = findViewById(R.id.listenPreviewText);
+        mediaPlayer = new MediaPlayer();
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             top10Songs = (ArrayList) extras.getSerializable("top10");
+            top10PreviewUrls = (ArrayList) extras.getSerializable("top10urls");
         }
         setCorrectOrder();
         setUpQuestion(round);
+        setPreview(round);
         setButtons(round);
     }
 
@@ -65,6 +76,17 @@ public class GameActivity extends AppCompatActivity {
             textView.setText("Track: " + tracks[turn] + "\nWhose track is this?");
         } else {
             textView.setText("Artist: " + tracks[turn] + "\nWhich track is made by this artist?");
+        }
+    }
+
+    private void setPreview(int turn) {
+        if (top10PreviewUrls.get(turn).equals("null")) {
+            textPreview.setText("No preview available");
+            playPreview.setVisibility(View.INVISIBLE);
+        } else {
+            textPreview.setText("Listen preview");
+            playPreview.setVisibility(View.VISIBLE);
+            mediaPlayer = MediaPlayer.create(this, Uri.parse(top10PreviewUrls.get(turn)));
         }
     }
 
@@ -152,6 +174,14 @@ public class GameActivity extends AppCompatActivity {
         return true;
     }
 
+    public void previewClicked(View v) {
+        if (mediaPlayer.isPlaying()) {
+            mediaPlayer.pause();
+        } else {
+            mediaPlayer.start();
+        }
+    }
+
     /**
      * Check user's answer and put it to array. Also check if game is over.
      * @param v view
@@ -184,13 +214,18 @@ public class GameActivity extends AppCompatActivity {
         }
 
         if (round < 9) {
+            mediaPlayer.stop();
             round++;
             setUpQuestion(round);
             setButtons(round);
+            setPreview(round);
         } else {
+            mediaPlayer.stop();
+            mediaPlayer.release();
             Intent intent = new Intent(this, GameOverActivity.class);
             intent.putExtra("userAnswers", userAnswers);
             intent.putExtra("top10", top10Songs);
+            intent.putExtra("top10urls", top10PreviewUrls);
             startActivity(intent);
         }
     }

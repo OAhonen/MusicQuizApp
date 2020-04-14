@@ -15,6 +15,7 @@ import fi.tuni.musicquizapp.preferences.GlobalPrefs;
  */
 public class TopTracks extends AppCompatActivity {
     private ArrayList<ArtistTrackPair> top10Songs;
+    private ArrayList<String> top10PreviewUrls;
     private ListView listView;
     private ArrayAdapter<String> arrayAdapter;
     private ArrayList<String> arrayList;
@@ -31,6 +32,7 @@ public class TopTracks extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             top10Songs = (ArrayList<ArtistTrackPair>) extras.getSerializable("top10");
+            top10PreviewUrls = (ArrayList) extras.getSerializable("top10urls");
         }
         setArrayListForAdapter();
         listView = findViewById(R.id.listID);

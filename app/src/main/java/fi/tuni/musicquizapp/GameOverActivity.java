@@ -21,6 +21,7 @@ public class GameOverActivity extends AppCompatActivity {
     private boolean[] userAnswers;
     private TextView textViewResult;
     private ArrayList<ArtistTrackPair> top10Songs;
+    private ArrayList<String> top10PreviewUrls;
     private int correctAnswers = 0;
     private TextView textViewMadeIt;
     private EditText editTextName;
@@ -39,6 +40,7 @@ public class GameOverActivity extends AppCompatActivity {
         if (extras != null) {
             userAnswers = extras.getBooleanArray("userAnswers");
             top10Songs = (ArrayList<ArtistTrackPair>) extras.getSerializable("top10");
+            top10PreviewUrls = (ArrayList) extras.getSerializable("top10urls");
         }
         textViewResult = findViewById(R.id.userResult);
         textViewMadeIt = findViewById(R.id.madeItToScores);
@@ -130,10 +132,12 @@ public class GameOverActivity extends AppCompatActivity {
         if (v.getId() == R.id.toMenuID) {
             Intent intent = new Intent(this, MainMenu.class);
             intent.putExtra("top10", top10Songs);
+            intent.putExtra("top10urls", top10PreviewUrls);
             startActivity(intent);
         } else if (v.getId() == R.id.playAgainID) {
             Intent intent = new Intent(this, GameActivity.class);
             intent.putExtra("top10", top10Songs);
+            intent.putExtra("top10urls", top10PreviewUrls);
             startActivity(intent);
         }
     }

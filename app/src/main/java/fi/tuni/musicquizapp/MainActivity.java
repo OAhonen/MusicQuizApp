@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private ConnectTask connectTask;
     private String accessToken;
     private ArrayList<ArtistTrackPair> top10Songs;
+    private ArrayList<String> top10PreviewUrls;
     private long timeElapsed;
 
     /**
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         top10Songs = new ArrayList<>();
+        top10PreviewUrls = new ArrayList<>();
         GlobalPrefs.init(this);
         HighscorePrefs.init(this);
         // Log.d("MAINTOKEN", GlobalPrefs.getAccessToken());
@@ -43,11 +45,13 @@ public class MainActivity extends AppCompatActivity {
         if (timeElapsed < 60) {
             checkPlaylist();
             getTop10();
+            getPreviewUrls();
             goToMainMenu();
         } else {
             getAccessToken();
             checkPlaylist();
             getTop10();
+            getPreviewUrls();
             goToMainMenu();
         }
     }
@@ -117,12 +121,29 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void getPreviewUrls() {
+        for (int i = 0; i < 10; i++) {
+            try {
+                String previewUrl = String.valueOf(playlist.getJSONObject("tracks")
+                        .getJSONArray("items")
+                        .getJSONObject(i)
+                        .getJSONObject("track")
+                        .getString("preview_url"));
+                Log.d("PREVIEW", previewUrl);
+                top10PreviewUrls.add(previewUrl);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     /**
      * After fetching tracks and putting them to arraylist, go to mainmenu.
      */
     public void goToMainMenu() {
         Intent intent = new Intent(this, MainMenu.class);
         intent.putExtra("top10", top10Songs);
+        intent.putExtra("top10urls", top10PreviewUrls);
         startActivity(intent);
     }
 }

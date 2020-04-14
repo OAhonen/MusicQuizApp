@@ -1,10 +1,10 @@
 package fi.tuni.musicquizapp;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 
 import java.util.ArrayList;
 
@@ -15,7 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
  */
 public class MainMenu extends AppCompatActivity {
     private ArrayList<ArtistTrackPair> top10Songs;
-    private String accessToken;
+    private ArrayList<String> top10PreviewUrls;
+    private Uri uri;
 
     /**
      * When MainMenu is called, it gets top-10 tracks from extras.
@@ -25,10 +26,11 @@ public class MainMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainmenu);
-        // Log.d("MAINMENUTOKEN", GlobalPrefs.getAccessToken());
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             top10Songs = (ArrayList<ArtistTrackPair>) extras.getSerializable("top10");
+            top10PreviewUrls = (ArrayList) extras.getSerializable("top10urls");
+            Log.d("MAINMENU", top10PreviewUrls.toString());
         }
     }
 
@@ -44,6 +46,7 @@ public class MainMenu extends AppCompatActivity {
         } else if (v.getId() == R.id.playID) {
             Intent intent = new Intent(this, GameActivity.class);
             intent.putExtra("top10", top10Songs);
+            intent.putExtra("top10urls", top10PreviewUrls);
             startActivity(intent);
         } else if (v.getId() == R.id.settingsID) {
             Intent intent = new Intent(this, Settings.class);
