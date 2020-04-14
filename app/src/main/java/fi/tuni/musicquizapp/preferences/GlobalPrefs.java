@@ -14,6 +14,8 @@ public abstract class GlobalPrefs {
     private static final String keyAccessToken = "accessToken";
     private static final String keyCountryNumber = "countryNumber";
     private static final String keyAccessTokenFetched = "accessTokenFetched";
+    private static final String keyModeNumber = "modeNumber";
+    private static final String keyMode = "mode";
 
     // Default country & countryCode = Finland
     private static String defCountryCode = "https://api.spotify.com/v1/playlists/37i9dQZEVXbMxcczTSoGwZ";
@@ -115,5 +117,25 @@ public abstract class GlobalPrefs {
      */
     public static String getAccessToken() {
         return prefs.getString(keyAccessToken, null);
+    }
+
+    public static void setModeNumber(int modeNumber) {
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putInt(keyModeNumber, modeNumber);
+        editor.commit();
+    }
+
+    public static int getModeNumber() {
+        return prefs.getInt(keyModeNumber, 0);
+    }
+
+    public static void setMode(String mode) {
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(keyMode, mode);
+        editor.commit();
+    }
+
+    public static String getMode() {
+        return prefs.getString(keyMode, "Hide artist");
     }
 }

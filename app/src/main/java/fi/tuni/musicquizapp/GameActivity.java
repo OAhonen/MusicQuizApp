@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 import androidx.appcompat.app.AppCompatActivity;
+import fi.tuni.musicquizapp.preferences.GlobalPrefs;
 
 /**
  * Game activity.
@@ -30,6 +31,8 @@ public class GameActivity extends AppCompatActivity {
     private int round = 0;
     private boolean[] userAnswers = new boolean[10];
     private String accessToken;
+    private String mode;
+    private String hideArtist = "Hide artist";
 
     /**
      * Get top-10 tracks from extras.
@@ -39,6 +42,7 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+        mode = GlobalPrefs.getMode();
         textView = findViewById(R.id.questionID);
         b1 = findViewById(R.id.answer1);
         b2 = findViewById(R.id.answer2);
@@ -57,7 +61,11 @@ public class GameActivity extends AppCompatActivity {
      * @param turn current turn
      */
     private void setUpQuestion(int turn) {
-        textView.setText("Track: " + tracks[turn] + "\nWhose track is this?");
+        if (mode.equals(hideArtist)) {
+            textView.setText("Track: " + tracks[turn] + "\nWhose track is this?");
+        } else {
+            textView.setText("Artist: " + tracks[turn] + "\nWhich track is made by this artist?");
+        }
     }
 
     /**
@@ -65,8 +73,13 @@ public class GameActivity extends AppCompatActivity {
      */
     private void setCorrectOrder() {
         for (int i = 0; i < top10Songs.size(); i++) {
-            artists[i] = top10Songs.get(i).getArtist();
-            tracks[i] = top10Songs.get(i).getTrack();
+            if (mode.equals(hideArtist)) {
+                artists[i] = top10Songs.get(i).getArtist();
+                tracks[i] = top10Songs.get(i).getTrack();
+            } else {
+                artists[i] = top10Songs.get(i).getTrack();
+                tracks[i] = top10Songs.get(i).getArtist();
+            }
         }
     }
 
@@ -80,41 +93,63 @@ public class GameActivity extends AppCompatActivity {
         int r = random.nextInt(4-1) + 1;
         int r2 = random.nextInt(9);
         int r3 = random.nextInt(9);
-        String answer1 = artists[turn];
+        String correctAnswer = artists[turn];
         String answer2 = artists[r2];
         String answer3 = artists[r3];
 
         if (r == 1) {
-            b1.setText(answer1);
-            while (answer1.equals(answer2) || answer1.equals(answer3) || answer2.equals(answer3)) {
+            b1.setText(correctAnswer);
+            while (correctAnswer.equals(answer2) || correctAnswer.equals(answer3) || answer2.equals(answer3)) {
                 r2 = random.nextInt(9);
-                answer2 = artists[r2];
                 r3 = random.nextInt(9);
+                if (!mode.equals(hideArtist)) {
+                    if (!checkDoubles(r2, r3)) {
+                        continue;
+                    }
+                }
+                answer2 = artists[r2];
                 answer3 = artists[r3];
             }
             b2.setText(answer2);
             b3.setText(answer3);
         } else if (r == 2) {
-            b2.setText(answer1);
-            while (answer1.equals(answer2) || answer1.equals(answer3) || answer2.equals(answer3)) {
+            b2.setText(correctAnswer);
+            while (correctAnswer.equals(answer2) || correctAnswer.equals(answer3) || answer2.equals(answer3)) {
                 r2 = random.nextInt(9);
-                answer2 = artists[r2];
                 r3 = random.nextInt(9);
+                if (!mode.equals(hideArtist)) {
+                    if (!checkDoubles(r2, r3)) {
+                        continue;
+                    }
+                }
+                answer2 = artists[r2];
                 answer3 = artists[r3];
             }
             b1.setText(answer2);
             b3.setText(answer3);
         } else if (r == 3) {
-            b3.setText(answer1);
-            while (answer1.equals(answer2) || answer1.equals(answer3) || answer2.equals(answer3)) {
+            b3.setText(correctAnswer);
+            while (correctAnswer.equals(answer2) || correctAnswer.equals(answer3) || answer2.equals(answer3)) {
                 r2 = random.nextInt(9);
-                answer2 = artists[r2];
                 r3 = random.nextInt(9);
+                if (!mode.equals(hideArtist)) {
+                    if (!checkDoubles(r2, r3)) {
+                        continue;
+                    }
+                }
+                answer2 = artists[r2];
                 answer3 = artists[r3];
             }
             b1.setText(answer2);
             b2.setText(answer3);
         }
+    }
+
+    private boolean checkDoubles(int n, int m) {
+        if (top10Songs.get(n).getArtist().equals(top10Songs.get(m).getArtist())) {
+            return false;
+        }
+        return true;
     }
 
     /**

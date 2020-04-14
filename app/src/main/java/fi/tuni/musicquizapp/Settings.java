@@ -20,8 +20,13 @@ import fi.tuni.musicquizapp.preferences.GlobalPrefs;
  */
 public class Settings extends AppCompatActivity {
     private Spinner countrySpinner;
-    private ArrayAdapter<String> arrayAdapter;
+    private ArrayAdapter<String> arrayAdapterCountries;
     private ArrayList<String> countriesList;
+    private ArrayAdapter<String> arrayAdapterMode;
+    private Spinner modeSpinner;
+    private String selectedMode;
+    private int modeNumber = 0;
+    private String[] modeArray = {"Hide artist", "Hide track"};
     private final String FINLAND = "https://api.spotify.com/v1/playlists/37i9dQZEVXbMxcczTSoGwZ";
     private final String USA = "https://api.spotify.com/v1/playlists/37i9dQZEVXbLRQDuF5jeBp";
     private final String SWEDEN = "https://api.spotify.com/v1/playlists/37i9dQZEVXbLoATJ81JYXz";
@@ -33,12 +38,13 @@ public class Settings extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+        setMode();
         countriesList = new ArrayList<>(Arrays.asList("Sweden", "Finland", "USA", "Netherlands"));
         Collections.sort(countriesList);
-        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, countriesList);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        arrayAdapterCountries = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, countriesList);
+        arrayAdapterCountries.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         countrySpinner = findViewById(R.id.changeCountryID);
-        countrySpinner.setAdapter(arrayAdapter);
+        countrySpinner.setAdapter(arrayAdapterCountries);
         countrySpinner.setSelection(GlobalPrefs.getCountryNumber());
         selectedCountry = (String) countrySpinner.getSelectedItem();
         Log.d("SETTOKEN", GlobalPrefs.getAccessToken());
@@ -47,6 +53,27 @@ public class Settings extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedCountry = countriesList.get(position);
                 countryNumber = position;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    private void setMode() {
+        arrayAdapterMode = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, modeArray);
+        arrayAdapterMode.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        modeSpinner = findViewById(R.id.changeMode);
+        modeSpinner.setAdapter(arrayAdapterMode);
+        modeSpinner.setSelection(GlobalPrefs.getModeNumber());
+        selectedMode = (String) modeSpinner.getSelectedItem();
+        modeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedMode = modeArray[position];
+                modeNumber = position;
             }
 
             @Override
@@ -90,6 +117,10 @@ public class Settings extends AppCompatActivity {
             GlobalPrefs.setCountry(selectedCountry);
             GlobalPrefs.setCountryCode(countryCode);
             GlobalPrefs.setCountryNumber(countryNumber);
+        }
+        if (!selectedMode.equals(GlobalPrefs.getMode())) {
+            GlobalPrefs.setMode(selectedMode);
+            GlobalPrefs.setModeNumber(modeNumber);
         }
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
