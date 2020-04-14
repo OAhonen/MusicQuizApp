@@ -39,6 +39,10 @@ public class Settings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         setMode();
+        setCountries();
+    }
+
+    private void setCountries() {
         countriesList = new ArrayList<>(Arrays.asList("Sweden", "Finland", "USA", "Netherlands"));
         Collections.sort(countriesList);
         arrayAdapterCountries = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, countriesList);

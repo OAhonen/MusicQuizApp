@@ -86,7 +86,12 @@ public class GameActivity extends AppCompatActivity {
         } else {
             textPreview.setText("Listen preview");
             playPreview.setVisibility(View.VISIBLE);
-            mediaPlayer = MediaPlayer.create(this, Uri.parse(top10PreviewUrls.get(turn)));
+            try {
+                mediaPlayer = MediaPlayer.create(this, Uri.parse(top10PreviewUrls.get(turn)));
+            } catch (Exception e) {
+                e.printStackTrace();
+                Log.d("GameActivity", "Error with mediaplayer-address");
+            }
         }
     }
 
@@ -175,10 +180,15 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void previewClicked(View v) {
-        if (mediaPlayer.isPlaying()) {
-            mediaPlayer.pause();
-        } else {
-            mediaPlayer.start();
+        try {
+            if (mediaPlayer.isPlaying()) {
+                mediaPlayer.pause();
+            } else {
+                mediaPlayer.start();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.d("GameActivity", "Error with playing/pausing mediaplayer");
         }
     }
 
