@@ -1,7 +1,6 @@
 package fi.tuni.musicquizapp;
 
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,11 +8,21 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.google.android.exoplayer2.ExoPlayerFactory;
+import com.google.android.exoplayer2.SimpleExoPlayer;
+import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
+import com.google.android.exoplayer2.extractor.ExtractorsFactory;
+import com.google.android.exoplayer2.source.ExtractorMediaSource;
+import com.google.android.exoplayer2.source.MediaSource;
+import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
+import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
+import com.google.android.exoplayer2.trackselection.TrackSelector;
+import com.google.android.exoplayer2.ui.PlayerView;
+import com.google.android.exoplayer2.upstream.BandwidthMeter;
+import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
+import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Random;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,15 +39,17 @@ public class GameActivity extends AppCompatActivity {
     private Button b1;
     private Button b2;
     private Button b3;
-    private Button playPreview;
     private TextView textPreview;
     private int round = 0;
     private boolean[] userAnswers = new boolean[10];
-    private String accessToken;
     private String mode;
     private String hideArtist = "Hide artist";
     private ArrayList<String> top10PreviewUrls;
-    private MediaPlayer mediaPlayer;
+    private SimpleExoPlayer exoPlayer;
+    private PlayerView exoPlayerView;
+    private MediaSource mediaSource;
+    private DefaultHttpDataSourceFactory dataSourceFactory;
+    private ExtractorsFactory extractorsFactory;
 
     /**
      * Get top-10 tracks from extras.
@@ -53,9 +64,7 @@ public class GameActivity extends AppCompatActivity {
         b1 = findViewById(R.id.answer1);
         b2 = findViewById(R.id.answer2);
         b3 = findViewById(R.id.answer3);
-        playPreview = findViewById(R.id.playPreview);
         textPreview = findViewById(R.id.listenPreviewText);
-        mediaPlayer = new MediaPlayer();
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             top10Songs = (ArrayList) extras.getSerializable("top10");
@@ -63,8 +72,28 @@ public class GameActivity extends AppCompatActivity {
         }
         setCorrectOrder();
         setUpQuestion(round);
-        setPreview(round);
         setButtons(round);
+        setUpExoPlayer();
+    }
+
+    private void setUpExoPlayer() {
+        exoPlayerView = findViewById(R.id.playerView);
+        try {
+            BandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
+            TrackSelector trackSelector = new DefaultTrackSelector(new AdaptiveTrackSelection.Factory(bandwidthMeter));
+            exoPlayer = ExoPlayerFactory.newSimpleInstance(this, trackSelector);
+            dataSourceFactory = new DefaultHttpDataSourceFactory("exoplayer_music");
+            extractorsFactory = new DefaultExtractorsFactory();
+            exoPlayerView.setPlayer(exoPlayer);
+            if (!top10PreviewUrls.get(round).equals("null")) {
+                Uri uri = Uri.parse(top10PreviewUrls.get(round));
+                mediaSource = new ExtractorMediaSource(uri, dataSourceFactory, extractorsFactory, null, null);
+                exoPlayer.prepare(mediaSource);
+                textPreview.setText("Listen preview (buffering can sometimes take a while).");
+            }
+        }catch (Exception e){
+            Log.e("GAME","Exoplayer error: "+ e.toString());
+        }
     }
 
     /**
@@ -79,19 +108,14 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
-    private void setPreview(int turn) {
-        if (top10PreviewUrls.get(turn).equals("null")) {
-            textPreview.setText("No preview available");
-            playPreview.setVisibility(View.INVISIBLE);
+    private void checkPreview() {
+        if (top10PreviewUrls.get(round).equals("null")) {
+            textPreview.setText("No preview available for this track.");
         } else {
-            textPreview.setText("Listen preview");
-            playPreview.setVisibility(View.VISIBLE);
-            try {
-                mediaPlayer = MediaPlayer.create(this, Uri.parse(top10PreviewUrls.get(turn)));
-            } catch (Exception e) {
-                e.printStackTrace();
-                Log.d("GameActivity", "Error with mediaplayer-address");
-            }
+            textPreview.setText("Listen preview (buffering can sometimes take a while).");
+            Uri uri = Uri.parse(top10PreviewUrls.get(round));
+            mediaSource = new ExtractorMediaSource(uri, dataSourceFactory, extractorsFactory, null, null);
+            exoPlayer.prepare(mediaSource);
         }
     }
 
@@ -179,19 +203,6 @@ public class GameActivity extends AppCompatActivity {
         return true;
     }
 
-    public void previewClicked(View v) {
-        try {
-            if (mediaPlayer.isPlaying()) {
-                mediaPlayer.pause();
-            } else {
-                mediaPlayer.start();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            Log.d("GameActivity", "Error with playing/pausing mediaplayer");
-        }
-    }
-
     /**
      * Check user's answer and put it to array. Also check if game is over.
      * @param v view
@@ -224,14 +235,14 @@ public class GameActivity extends AppCompatActivity {
         }
 
         if (round < 9) {
-            mediaPlayer.stop();
+            exoPlayer.stop();
             round++;
             setUpQuestion(round);
             setButtons(round);
-            setPreview(round);
+            checkPreview();
         } else {
-            mediaPlayer.stop();
-            mediaPlayer.release();
+            exoPlayer.stop();
+            exoPlayer.release();
             Intent intent = new Intent(this, GameOverActivity.class);
             intent.putExtra("userAnswers", userAnswers);
             intent.putExtra("top10", top10Songs);
