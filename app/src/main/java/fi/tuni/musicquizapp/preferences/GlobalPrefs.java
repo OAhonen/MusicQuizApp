@@ -119,22 +119,38 @@ public abstract class GlobalPrefs {
         return prefs.getString(keyAccessToken, null);
     }
 
+    /**
+     * Set question-mode number (0 or 1).
+     * @param modeNumber modeNumber
+     */
     public static void setModeNumber(int modeNumber) {
         SharedPreferences.Editor editor = prefs.edit();
         editor.putInt(keyModeNumber, modeNumber);
         editor.commit();
     }
 
+    /**
+     * Get question-mode number (0 or 1).
+     * @return modeNumber
+     */
     public static int getModeNumber() {
         return prefs.getInt(keyModeNumber, 0);
     }
 
+    /**
+     * Set question-mode (hide artist or hide track).
+     * @param mode mode
+     */
     public static void setMode(String mode) {
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString(keyMode, mode);
         editor.commit();
     }
 
+    /**
+     * Get question-mode (hide artist or hide track).
+     * @return question-mode
+     */
     public static String getMode() {
         return prefs.getString(keyMode, "Hide artist");
     }

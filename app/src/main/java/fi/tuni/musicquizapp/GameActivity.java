@@ -76,6 +76,9 @@ public class GameActivity extends AppCompatActivity {
         setUpExoPlayer();
     }
 
+    /**
+     * Setup ExoPlayer.
+     */
     private void setUpExoPlayer() {
         exoPlayerView = findViewById(R.id.playerView);
         try {
@@ -108,6 +111,9 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Check if preview is available for current track.
+     */
     private void checkPreview() {
         if (top10PreviewUrls.get(round).equals("null")) {
             textPreview.setText("No preview available for this track.");
@@ -196,6 +202,13 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Check that there are no double anwers. For example, one artist could have
+     * many tracks in top-10, so check that answers aren't from the same artist.
+     * @param n index n
+     * @param m index m
+     * @return false/true
+     */
     private boolean checkDoubles(int n, int m) {
         if (top10Songs.get(n).getArtist().equals(top10Songs.get(m).getArtist())) {
             return false;
