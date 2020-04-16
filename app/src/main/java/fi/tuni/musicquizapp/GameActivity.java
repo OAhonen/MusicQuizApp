@@ -261,6 +261,9 @@ public class GameActivity extends AppCompatActivity {
             }
             b3Clicked = true;
         }
+        b1.setClickable(false);
+        b2.setClickable(false);
+        b3.setClickable(false);
         afterAnswer();
     }
 
@@ -300,5 +303,8 @@ public class GameActivity extends AppCompatActivity {
             b3.setBackgroundResource(R.drawable.button_default);
             b3Clicked = false;
         }
+        b1.setClickable(true);
+        b2.setClickable(true);
+        b3.setClickable(true);
     }
 }
