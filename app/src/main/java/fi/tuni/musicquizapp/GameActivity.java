@@ -3,6 +3,7 @@ package fi.tuni.musicquizapp;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -50,6 +51,9 @@ public class GameActivity extends AppCompatActivity {
     private MediaSource mediaSource;
     private DefaultHttpDataSourceFactory dataSourceFactory;
     private ExtractorsFactory extractorsFactory;
+    private boolean b1Clicked = false;
+    private boolean b2Clicked = false;
+    private boolean b3Clicked = false;
 
     /**
      * Get top-10 tracks from extras.
@@ -89,6 +93,7 @@ public class GameActivity extends AppCompatActivity {
             dataSourceFactory = new DefaultHttpDataSourceFactory("exoplayer_music");
             extractorsFactory = new DefaultExtractorsFactory();
             exoPlayerView.setPlayer(exoPlayer);
+            exoPlayerView.setControllerShowTimeoutMs(0);
             if (!top10PreviewUrls.get(round).equals("null")) {
                 Uri uri = Uri.parse(top10PreviewUrls.get(round));
                 mediaSource = new ExtractorMediaSource(uri, dataSourceFactory, extractorsFactory, null, null);
@@ -226,42 +231,74 @@ public class GameActivity extends AppCompatActivity {
             if (b1.getText().equals(artists[round])) {
                 Log.d("GAME", "CORRECT");
                 userAnswers[round] = true;
+                b1.setBackgroundResource(R.drawable.button_correct);
             } else {
                 Log.d("GAME", "WRONG");
                 userAnswers[round] = false;
+                b1.setBackgroundResource(R.drawable.button_wrong);
             }
+            b1Clicked = true;
         } else if (v.getId() == R.id.answer2) {
             if (b2.getText().equals(artists[round])) {
                 Log.d("GAME", "CORRECT");
                 userAnswers[round] = true;
+                b2.setBackgroundResource(R.drawable.button_correct);
             } else {
                 Log.d("GAME", "WRONG");
                 userAnswers[round] = false;
+                b2.setBackgroundResource(R.drawable.button_wrong);
             }
+            b2Clicked = true;
         } else if (v.getId() == R.id.answer3) {
             if (b3.getText().equals(artists[round])) {
                 Log.d("GAME", "CORRECT");
                 userAnswers[round] = true;
+                b3.setBackgroundResource(R.drawable.button_correct);
             } else {
                 Log.d("GAME", "WRONG");
                 userAnswers[round] = false;
+                b3.setBackgroundResource(R.drawable.button_wrong);
             }
+            b3Clicked = true;
         }
+        afterAnswer();
+    }
 
-        if (round < 9) {
-            exoPlayer.stop();
-            round++;
-            setUpQuestion(round);
-            setButtons(round);
-            checkPreview();
-        } else {
-            exoPlayer.stop();
-            exoPlayer.release();
-            Intent intent = new Intent(this, GameOverActivity.class);
-            intent.putExtra("userAnswers", userAnswers);
-            intent.putExtra("top10", top10Songs);
-            intent.putExtra("top10urls", top10PreviewUrls);
-            startActivity(intent);
+    private void afterAnswer() {
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                buttonsToDefault();
+                if (round < 9) {
+                    exoPlayer.stop();
+                    round++;
+                    setUpQuestion(round);
+                    setButtons(round);
+                    checkPreview();
+                } else {
+                    exoPlayer.stop();
+                    exoPlayer.release();
+                    Intent intent = new Intent(GameActivity.this, GameOverActivity.class);
+                    intent.putExtra("userAnswers", userAnswers);
+                    intent.putExtra("top10", top10Songs);
+                    intent.putExtra("top10urls", top10PreviewUrls);
+                    startActivity(intent);
+                }
+            }
+        }, 1000);
+    }
+
+    private void buttonsToDefault() {
+        if (b1Clicked) {
+            b1.setBackgroundResource(R.drawable.button_default);
+            b1Clicked = false;
+        } else if (b2Clicked) {
+            b2.setBackgroundResource(R.drawable.button_default);
+            b2Clicked = false;
+        } else if (b3Clicked) {
+            b3.setBackgroundResource(R.drawable.button_default);
+            b3Clicked = false;
         }
     }
 }
