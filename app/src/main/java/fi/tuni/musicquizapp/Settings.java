@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
@@ -33,11 +34,13 @@ public class Settings extends AppCompatActivity {
     private final String NETHERLANDS = "https://api.spotify.com/v1/playlists/37i9dQZEVXbKCF6dqVpDkS";
     private String selectedCountry;
     private int countryNumber = 0;
+    private Button saveButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+        saveButton = findViewById(R.id.backToMenuButton);
         setMode();
         setCountries();
     }
@@ -116,6 +119,7 @@ public class Settings extends AppCompatActivity {
      * @param v view
      */
     public void backToMenuClick(View v) {
+        saveButton.setBackgroundResource(R.drawable.button_clicked);
         String countryCode = checkSelectedCountry(selectedCountry);
         if (!selectedCountry.equals(GlobalPrefs.getCountry())) {
             GlobalPrefs.setCountry(selectedCountry);

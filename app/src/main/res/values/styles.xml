@@ -17,4 +17,40 @@
         <item name="android:textAlignment">center</item>
     </style>
 
+    <style name="HighScoreHeadTextView" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="HighScoreTextViewFirst" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">#FFFF0E</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="HighScoreTextViewSecond" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">#E7E8E5</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="HighScoreTextViewThird" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">#FDDD0F</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
 </resources>

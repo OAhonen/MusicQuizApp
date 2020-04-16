@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000000"
     tools:context=".Highscore">
 
     <TableRow
@@ -12,133 +13,91 @@
         <TextView
             android:text="@string/position"
             android:id="@+id/colPosition"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:textAlignment="center"/>
+            style="@style/HighScoreHeadTextView"
+            android:layout_weight="0.5"/>
 
         <TextView
             android:text="@string/name"
             android:id="@+id/colName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAlignment="center"/>
+            style="@style/HighScoreHeadTextView"/>
 
         <TextView
             android:text="@string/score"
             android:id="@+id/colScore"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAlignment="center"/>
+            style="@style/HighScoreHeadTextView"/>
 
         <TextView
             android:text="@string/playlist"
             android:id="@+id/colPlaylist"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAlignment="center"/>
+            style="@style/HighScoreHeadTextView"/>
     </TableRow>
 
     <TableRow
-        android:id="@+id/rowFirst">
+        android:id="@+id/rowFirst"
+        android:layout_marginTop="10dp">
 
         <TextView
             android:text="@string/first"
             android:id="@+id/colPositionFirst"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:textAlignment="center"/>
+            style="@style/HighScoreTextViewFirst"
+            android:layout_weight="0.5"/>
 
         <TextView
             android:id="@+id/colNameFirst"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAlignment="center"/>
+            style="@style/HighScoreTextViewFirst"/>
 
         <TextView
             android:id="@+id/colScoreFirst"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAlignment="center"/>
+            style="@style/HighScoreTextViewFirst"/>
 
         <TextView
             android:id="@+id/colPlaylistFirst"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAlignment="center"/>
+            style="@style/HighScoreTextViewFirst"/>
     </TableRow>
 
     <TableRow
-        android:id="@+id/rowSecond">
+        android:id="@+id/rowSecond"
+        android:layout_marginTop="10dp">
 
         <TextView
             android:text="@string/second"
-            android:id="@+id/colPositionSecond"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:textAlignment="center"/>
+            style="@style/HighScoreTextViewSecond"
+            android:layout_weight="0.5"/>
 
         <TextView
             android:id="@+id/colNameSecond"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAlignment="center"/>
+            style="@style/HighScoreTextViewSecond"/>
 
         <TextView
             android:id="@+id/colScoreSecond"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAlignment="center"/>
+            style="@style/HighScoreTextViewSecond"/>
 
         <TextView
             android:id="@+id/colPlaylistSecond"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAlignment="center"/>
+            style="@style/HighScoreTextViewSecond"/>
     </TableRow>
 
     <TableRow
-        android:id="@+id/rowThird">
+        android:id="@+id/rowThird"
+        android:layout_marginTop="10dp">
 
         <TextView
             android:text="@string/third"
             android:id="@+id/colPositionThird"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:textAlignment="center"/>
+            style="@style/HighScoreTextViewThird"
+            android:layout_weight="0.5"/>
 
         <TextView
             android:id="@+id/colNameThird"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAlignment="center"/>
+            style="@style/HighScoreTextViewThird"/>
 
         <TextView
             android:id="@+id/colScoreThird"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAlignment="center"/>
+            style="@style/HighScoreTextViewThird"/>
 
         <TextView
             android:id="@+id/colPlaylistThird"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAlignment="center"/>
+            style="@style/HighScoreTextViewThird"/>
     </TableRow>
 
 </TableLayout>
