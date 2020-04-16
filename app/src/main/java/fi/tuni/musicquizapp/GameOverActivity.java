@@ -2,6 +2,7 @@ package fi.tuni.musicquizapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -27,6 +28,8 @@ public class GameOverActivity extends AppCompatActivity {
     private EditText editTextName;
     private Button saveScore;
     private int scorePosition = 0;
+    private Button menuButton;
+    private Button playAgainButton;
 
     /**
      * Get top-10 tracks and user's answers.
@@ -47,6 +50,8 @@ public class GameOverActivity extends AppCompatActivity {
         textViewMadeIt = findViewById(R.id.madeItToScores);
         editTextName = findViewById(R.id.editName);
         saveScore = findViewById(R.id.saveScore);
+        menuButton = findViewById(R.id.toMenuID);
+        playAgainButton = findViewById(R.id.playAgainID);
         calcResult();
         checkHighScore();
     }
@@ -131,15 +136,29 @@ public class GameOverActivity extends AppCompatActivity {
      */
     public void gameoverClicked(View v) {
         if (v.getId() == R.id.toMenuID) {
+            menuButton.setBackgroundResource(R.drawable.button_clicked);
+            setButtonBackground(menuButton);
             Intent intent = new Intent(this, MainMenu.class);
             intent.putExtra("top10", top10Songs);
             intent.putExtra("top10urls", top10PreviewUrls);
             startActivity(intent);
         } else if (v.getId() == R.id.playAgainID) {
+            playAgainButton.setBackgroundResource(R.drawable.button_clicked);
+            setButtonBackground(playAgainButton);
             Intent intent = new Intent(this, GameActivity.class);
             intent.putExtra("top10", top10Songs);
             intent.putExtra("top10urls", top10PreviewUrls);
             startActivity(intent);
         }
+    }
+
+    private void setButtonBackground(final Button b) {
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                b.setBackgroundResource(R.drawable.button_default);
+            }
+        }, 1000);
     }
 }

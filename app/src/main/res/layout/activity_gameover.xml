@@ -5,30 +5,39 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#000000"
     tools:context=".GameOverActivity">
 
     <TextView
         android:id="@+id/userResult"
+        android:textSize="20sp"
+        android:textColor="#ffffff"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:layout_marginTop="25dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
     <Button
         android:text="@string/mainmenu"
         android:id="@+id/toMenuID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="gameoverClicked"/>
+        android:onClick="gameoverClicked"
+        style="@style/GameOverButton"/>
 
     <Button
         android:text="@string/playagain"
         android:id="@+id/playAgainID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="gameoverClicked"/>
+        android:onClick="gameoverClicked"
+        style="@style/GameOverButton"/>
 
     <TextView
         android:id="@+id/madeItToScores"
         android:visibility="invisible"
+        android:textSize="20sp"
+        android:textColor="#ffffff"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:layout_marginTop="25dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
@@ -37,6 +46,13 @@
         android:visibility="invisible"
         android:hint="@string/namehint"
         android:inputType="text"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#ffffff"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:background="#DBDBD9"
+        android:layout_marginTop="25dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
@@ -45,8 +61,15 @@
         android:id="@+id/saveScore"
         android:visibility="invisible"
         android:onClick="saveToScores"
+        android:background="@drawable/button_default"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="25dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="50dp"/>
 
 
 </LinearLayout>
