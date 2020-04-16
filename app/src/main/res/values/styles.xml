@@ -59,4 +59,16 @@
         <item name="android:layout_weight">1</item>
     </style>
 
+    <!-- Main Menu buttons -->
+    <style name="MainMenuButton" parent="Widget.AppCompat.Button">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/button_default</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:onClick">clicked</item>
+    </style>
+
 </resources>
