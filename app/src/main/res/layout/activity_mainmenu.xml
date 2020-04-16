@@ -5,34 +5,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/background"
     tools:context=".MainMenu">
 
     <Button
         android:text="@string/play"
+        android:textSize="20sp"
         android:id="@+id/playID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/button_default"
+        android:layout_gravity="center"
         android:onClick="clicked"/>
 
     <Button
         android:text="@string/highscores"
+        android:textSize="20sp"
         android:id="@+id/scoresID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/button_default"
+        android:layout_gravity="center"
         android:onClick="clicked"/>
 
     <Button
         android:text="@string/curTop10"
+        android:textSize="20sp"
         android:id="@+id/top10ID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/button_default"
+        android:layout_gravity="center"
         android:onClick="clicked"/>
 
     <Button
         android:text="@string/settings"
+        android:textSize="20sp"
         android:id="@+id/settingsID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/button_default"
+        android:layout_gravity="center"
         android:onClick="clicked"/>
 
 </LinearLayout>
