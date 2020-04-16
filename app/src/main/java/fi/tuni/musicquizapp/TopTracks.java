@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -19,6 +20,7 @@ public class TopTracks extends AppCompatActivity {
     private ListView listView;
     private ArrayAdapter<String> arrayAdapter;
     private ArrayList<String> arrayList;
+    private TextView curCountry;
 
     /**
      * Get top-10 tracks from extras and put them to listview.
@@ -36,8 +38,10 @@ public class TopTracks extends AppCompatActivity {
         }
         setArrayListForAdapter();
         listView = findViewById(R.id.listID);
-        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
+        arrayAdapter = new ArrayAdapter<String>(this, R.layout.adapter_top10, arrayList);
         listView.setAdapter(arrayAdapter);
+        curCountry = findViewById(R.id.showCountryID);
+        curCountry.setText(GlobalPrefs.getCountry());
     }
 
     /**
@@ -46,7 +50,7 @@ public class TopTracks extends AppCompatActivity {
     private void setArrayListForAdapter() {
         arrayList = new ArrayList<>();
         for (int i = 0; i < top10Songs.size(); i++) {
-            arrayList.add(top10Songs.get(i).getArtist() + " - " + top10Songs.get(i).getTrack());
+            arrayList.add(i+1 + ". " + top10Songs.get(i).getArtist() + " - " + top10Songs.get(i).getTrack());
         }
     }
 }

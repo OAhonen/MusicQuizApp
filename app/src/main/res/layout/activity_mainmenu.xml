@@ -11,6 +11,7 @@
     <Button
         android:text="@string/play"
         android:textSize="20sp"
+        android:textStyle="bold"
         android:id="@+id/playID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,6 +22,7 @@
     <Button
         android:text="@string/highscores"
         android:textSize="20sp"
+        android:textStyle="bold"
         android:id="@+id/scoresID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -31,6 +33,7 @@
     <Button
         android:text="@string/curTop10"
         android:textSize="20sp"
+        android:textStyle="bold"
         android:id="@+id/top10ID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -41,6 +44,7 @@
     <Button
         android:text="@string/settings"
         android:textSize="20sp"
+        android:textStyle="bold"
         android:id="@+id/settingsID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
