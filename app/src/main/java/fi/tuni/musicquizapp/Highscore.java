@@ -16,6 +16,7 @@ public class Highscore extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_highscore);
+        getSupportActionBar().hide();
         setupTable();
         updateTable();
     }

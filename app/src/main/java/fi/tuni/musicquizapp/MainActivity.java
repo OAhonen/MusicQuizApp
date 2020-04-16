@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().hide();
         top10Songs = new ArrayList<>();
         top10PreviewUrls = new ArrayList<>();
         GlobalPrefs.init(this);

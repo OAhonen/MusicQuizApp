@@ -8,15 +8,18 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- Loading screen. -->
     <style name="splashScreenTheme" parent="@android:style/Theme.DeviceDefault.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/loading</item>
     </style>
 
+    <!-- Used in settings. -->
     <style name="Spinner" parent="Widget.AppCompat.Spinner">
         <item name="backgroundTint">#ff0000</item>
         <item name="android:textAlignment">center</item>
     </style>
 
+    <!-- High Score head text -->
     <style name="HighScoreHeadTextView" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">#ffffff</item>
         <item name="android:textSize">20sp</item>
@@ -26,6 +29,7 @@
         <item name="android:layout_weight">1</item>
     </style>
 
+    <!-- High Score first place text -->
     <style name="HighScoreTextViewFirst" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">#FFFF0E</item>
         <item name="android:textSize">18sp</item>
@@ -35,6 +39,7 @@
         <item name="android:layout_weight">1</item>
     </style>
 
+    <!-- High Score second place text -->
     <style name="HighScoreTextViewSecond" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">#E7E8E5</item>
         <item name="android:textSize">18sp</item>
@@ -44,6 +49,7 @@
         <item name="android:layout_weight">1</item>
     </style>
 
+    <!-- High Score third place text -->
     <style name="HighScoreTextViewThird" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">#FDDD0F</item>
         <item name="android:textSize">18sp</item>

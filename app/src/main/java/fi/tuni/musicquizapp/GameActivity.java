@@ -59,6 +59,7 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+        getSupportActionBar().hide();
         mode = GlobalPrefs.getMode();
         textView = findViewById(R.id.questionID);
         b1 = findViewById(R.id.answer1);

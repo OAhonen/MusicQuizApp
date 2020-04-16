@@ -31,6 +31,7 @@ public class TopTracks extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Log.d("TOPTOKEN", GlobalPrefs.getAccessToken());
         setContentView(R.layout.activity_toptracks);
+        getSupportActionBar().hide();
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             top10Songs = (ArrayList<ArtistTrackPair>) extras.getSerializable("top10");
