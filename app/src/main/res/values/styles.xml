@@ -9,7 +9,12 @@
     </style>
 
     <style name="splashScreenTheme" parent="@android:style/Theme.DeviceDefault.Light.NoActionBar">
-        <item name="android:windowBackground">@drawable/ic_launcher_background</item>
+        <item name="android:windowBackground">@drawable/loading</item>
+    </style>
+
+    <style name="Spinner" parent="Widget.AppCompat.Spinner">
+        <item name="backgroundTint">#ff0000</item>
+        <item name="android:textAlignment">center</item>
     </style>
 
 </resources>

@@ -5,24 +5,52 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#000000"
     tools:context=".Settings">
+
+    <TextView
+        android:id="@+id/settingsCountryTextView"
+        android:text="Country:"
+        android:textSize="20sp"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="50dp"/>
 
     <Spinner
         android:id="@+id/changeCountryID"
+        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        style="@style/Spinner"
         android:spinnerMode="dropdown"/>
+
+    <TextView
+        android:id="@+id/settingsChangeModeTextView"
+        android:text="Mode:"
+        android:textSize="20sp"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
     <Spinner
         android:id="@+id/changeMode"
+        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        style="@style/Spinner"
         android:spinnerMode="dropdown"/>
 
     <Button
         android:id="@+id/backToMenuButton"
         android:text="@string/save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:background="@drawable/button_default"
         android:onClick="backToMenuClick"/>
 </LinearLayout>

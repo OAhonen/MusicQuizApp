@@ -45,8 +45,8 @@ public class Settings extends AppCompatActivity {
     private void setCountries() {
         countriesList = new ArrayList<>(Arrays.asList("Sweden", "Finland", "USA", "Netherlands"));
         Collections.sort(countriesList);
-        arrayAdapterCountries = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, countriesList);
-        arrayAdapterCountries.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        arrayAdapterCountries = new ArrayAdapter<String>(this, R.layout.adapter_settings, countriesList);
+        arrayAdapterCountries.setDropDownViewResource(R.layout.adapter_settings);
         countrySpinner = findViewById(R.id.changeCountryID);
         countrySpinner.setAdapter(arrayAdapterCountries);
         countrySpinner.setSelection(GlobalPrefs.getCountryNumber());
@@ -67,8 +67,8 @@ public class Settings extends AppCompatActivity {
     }
 
     private void setMode() {
-        arrayAdapterMode = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, modeArray);
-        arrayAdapterMode.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        arrayAdapterMode = new ArrayAdapter<String>(this, R.layout.adapter_settings, modeArray);
+        arrayAdapterMode.setDropDownViewResource(R.layout.adapter_settings);
         modeSpinner = findViewById(R.id.changeMode);
         modeSpinner.setAdapter(arrayAdapterMode);
         modeSpinner.setSelection(GlobalPrefs.getModeNumber());
