@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -56,7 +55,7 @@ public class GameActivity extends AppCompatActivity {
     private boolean b3Clicked = false;
 
     /**
-     * Get top-10 tracks from extras.
+     * Get top-10 tracks from extras and setup the first view.
      * @param savedInstanceState bundle
      */
     @Override
@@ -101,7 +100,7 @@ public class GameActivity extends AppCompatActivity {
                 textPreview.setText("Listen preview (buffering can sometimes take a while).");
             }
         }catch (Exception e){
-            Log.e("GAME","Exoplayer error: "+ e.toString());
+            e.printStackTrace();
         }
     }
 
@@ -229,33 +228,27 @@ public class GameActivity extends AppCompatActivity {
     public void answered(View v) {
         if (v.getId() == R.id.answer1) {
             if (b1.getText().equals(artists[round])) {
-                Log.d("GAME", "CORRECT");
                 userAnswers[round] = true;
                 b1.setBackgroundResource(R.drawable.button_correct);
             } else {
-                Log.d("GAME", "WRONG");
                 userAnswers[round] = false;
                 b1.setBackgroundResource(R.drawable.button_wrong);
             }
             b1Clicked = true;
         } else if (v.getId() == R.id.answer2) {
             if (b2.getText().equals(artists[round])) {
-                Log.d("GAME", "CORRECT");
                 userAnswers[round] = true;
                 b2.setBackgroundResource(R.drawable.button_correct);
             } else {
-                Log.d("GAME", "WRONG");
                 userAnswers[round] = false;
                 b2.setBackgroundResource(R.drawable.button_wrong);
             }
             b2Clicked = true;
         } else if (v.getId() == R.id.answer3) {
             if (b3.getText().equals(artists[round])) {
-                Log.d("GAME", "CORRECT");
                 userAnswers[round] = true;
                 b3.setBackgroundResource(R.drawable.button_correct);
             } else {
-                Log.d("GAME", "WRONG");
                 userAnswers[round] = false;
                 b3.setBackgroundResource(R.drawable.button_wrong);
             }
@@ -267,6 +260,9 @@ public class GameActivity extends AppCompatActivity {
         afterAnswer();
     }
 
+    /**
+     * After user has answered the question, check if it is the last round or continue playing.
+     */
     private void afterAnswer() {
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -292,6 +288,9 @@ public class GameActivity extends AppCompatActivity {
         }, 1000);
     }
 
+    /**
+     * Set buttons back to default.
+     */
     private void buttonsToDefault() {
         if (b1Clicked) {
             b1.setBackgroundResource(R.drawable.button_default);

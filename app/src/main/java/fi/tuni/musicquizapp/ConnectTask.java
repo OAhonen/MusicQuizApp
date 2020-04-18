@@ -1,7 +1,6 @@
 package fi.tuni.musicquizapp;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -52,15 +51,11 @@ public class ConnectTask extends AsyncTask {
             Response response = client.newCall(request).execute();
         } catch (IOException e) {
             e.printStackTrace();
-            Log.d("ConnectTask", "Error with response");
         }
 
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                String mMessage = e.getMessage();
-                Log.d("No response", mMessage);
-                // call.cancel();
             }
 
             @Override
@@ -72,7 +67,6 @@ public class ConnectTask extends AsyncTask {
                         GlobalPrefs.setAccessTokenFetched(System.currentTimeMillis());
                     } else {
                         playlist = new JSONObject(mMessage);
-                        Log.d("PLAYLIST", playlist.toString());
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

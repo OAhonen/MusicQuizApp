@@ -1,7 +1,6 @@
 package fi.tuni.musicquizapp;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -29,7 +28,6 @@ public class TopTracks extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("TOPTOKEN", GlobalPrefs.getAccessToken());
         setContentView(R.layout.activity_toptracks);
         getSupportActionBar().hide();
         Bundle extras = getIntent().getExtras();

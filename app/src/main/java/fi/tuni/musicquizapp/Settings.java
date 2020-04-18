@@ -2,7 +2,6 @@ package fi.tuni.musicquizapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -36,6 +35,10 @@ public class Settings extends AppCompatActivity {
     private int countryNumber = 0;
     private Button saveButton;
 
+    /**
+     * Setup the first view.
+     * @param savedInstanceState bundle
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +49,9 @@ public class Settings extends AppCompatActivity {
         setCountries();
     }
 
+    /**
+     * Set countries to spinner.
+     */
     private void setCountries() {
         countriesList = new ArrayList<>(Arrays.asList("Sweden", "Finland", "USA", "Netherlands"));
         Collections.sort(countriesList);
@@ -55,7 +61,6 @@ public class Settings extends AppCompatActivity {
         countrySpinner.setAdapter(arrayAdapterCountries);
         countrySpinner.setSelection(GlobalPrefs.getCountryNumber());
         selectedCountry = (String) countrySpinner.getSelectedItem();
-        Log.d("SETTOKEN", GlobalPrefs.getAccessToken());
         countrySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -70,6 +75,9 @@ public class Settings extends AppCompatActivity {
         });
     }
 
+    /**
+     * Set question modes to spinner.
+     */
     private void setMode() {
         arrayAdapterMode = new ArrayAdapter<String>(this, R.layout.adapter_settings, modeArray);
         arrayAdapterMode.setDropDownViewResource(R.layout.adapter_settings);

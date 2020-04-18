@@ -12,6 +12,10 @@ import fi.tuni.musicquizapp.preferences.HighscorePrefs;
 public class Highscore extends AppCompatActivity {
     private TextView n1, n2, n3, s1, s2, s3, c1, c2, c3;
 
+    /**
+     * Setup first view.
+     * @param savedInstanceState bundle
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

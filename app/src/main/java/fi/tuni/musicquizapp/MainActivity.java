@@ -6,7 +6,6 @@ import fi.tuni.musicquizapp.preferences.HighscorePrefs;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -43,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
         timeElapsed = TimeUnit.MILLISECONDS.toMinutes(System.currentTimeMillis() - GlobalPrefs.getAccessTokenFetched());
         // If user has used the app recently (max 1 hour ago), only fetch playlist.
         // Else fetch new access token.
-        Log.d("TIME", String.valueOf(timeElapsed));
         if (timeElapsed > 60) {
             getAccessToken();
         }
@@ -110,7 +108,6 @@ public class MainActivity extends AppCompatActivity {
                         .getJSONObject(i)
                         .getJSONObject("track")
                         .getString("name"));
-                Log.d("ARTIST + SONG", artist + " " + song);
                 top10Songs.add(new ArtistTrackPair(artist, song));
             } catch (Exception e) {
                 e.printStackTrace();
@@ -118,6 +115,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Get preview-urls of the tracks.
+     */
     private void getPreviewUrls() {
         for (int i = 0; i < 10; i++) {
             try {
@@ -126,7 +126,6 @@ public class MainActivity extends AppCompatActivity {
                         .getJSONObject(i)
                         .getJSONObject("track")
                         .getString("preview_url"));
-                Log.d("PREVIEW", previewUrl);
                 top10PreviewUrls.add(previewUrl);
             } catch (Exception e) {
                 e.printStackTrace();

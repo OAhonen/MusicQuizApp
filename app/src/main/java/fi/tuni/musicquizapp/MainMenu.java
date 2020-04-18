@@ -1,10 +1,8 @@
 package fi.tuni.musicquizapp;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -33,7 +31,6 @@ public class MainMenu extends AppCompatActivity {
         if (extras != null) {
             top10Songs = (ArrayList<ArtistTrackPair>) extras.getSerializable("top10");
             top10PreviewUrls = (ArrayList) extras.getSerializable("top10urls");
-            Log.d("MAINMENU", top10PreviewUrls.toString());
         }
         buttonSettings = findViewById(R.id.settingsID);
         buttonPlay = findViewById(R.id.playID);
@@ -72,6 +69,10 @@ public class MainMenu extends AppCompatActivity {
         }
     }
 
+    /**
+     * Set button back to default.
+     * @param b button
+     */
     private void setButtonBackground(final Button b) {
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
