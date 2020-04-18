@@ -97,7 +97,7 @@ public class GameActivity extends AppCompatActivity {
                 Uri uri = Uri.parse(top10PreviewUrls.get(round));
                 mediaSource = new ExtractorMediaSource(uri, dataSourceFactory, extractorsFactory, null, null);
                 exoPlayer.prepare(mediaSource);
-                textPreview.setText("Listen preview (buffering can sometimes take a while).");
+                textPreview.setText(getString(R.string.listenpreview));
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -121,9 +121,9 @@ public class GameActivity extends AppCompatActivity {
      */
     private void checkPreview() {
         if (top10PreviewUrls.get(round).equals("null")) {
-            textPreview.setText("No preview available for this track.");
+            textPreview.setText(getString(R.string.nopreview));
         } else {
-            textPreview.setText("Listen preview (buffering can sometimes take a while).");
+            textPreview.setText(getString(R.string.listenpreview));
             Uri uri = Uri.parse(top10PreviewUrls.get(round));
             mediaSource = new ExtractorMediaSource(uri, dataSourceFactory, extractorsFactory, null, null);
             exoPlayer.prepare(mediaSource);
