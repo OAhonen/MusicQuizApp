@@ -31,6 +31,7 @@ public class Settings extends AppCompatActivity {
     private final String USA = "https://api.spotify.com/v1/playlists/37i9dQZEVXbLRQDuF5jeBp";
     private final String SWEDEN = "https://api.spotify.com/v1/playlists/37i9dQZEVXbLoATJ81JYXz";
     private final String NETHERLANDS = "https://api.spotify.com/v1/playlists/37i9dQZEVXbKCF6dqVpDkS";
+    private final String NORWAY = "https://api.spotify.com/v1/playlists/37i9dQZEVXbJvfa0Yxg7E7";
     private String selectedCountry;
     private int countryNumber = 0;
     private Button saveButton;
@@ -53,7 +54,7 @@ public class Settings extends AppCompatActivity {
      * Set countries to spinner.
      */
     private void setCountries() {
-        countriesList = new ArrayList<>(Arrays.asList("Sweden", "Finland", "USA", "Netherlands"));
+        countriesList = new ArrayList<>(Arrays.asList("Sweden", "Finland", "USA", "Netherlands", "Norway"));
         Collections.sort(countriesList);
         arrayAdapterCountries = new ArrayAdapter<String>(this, R.layout.adapter_settings, countriesList);
         arrayAdapterCountries.setDropDownViewResource(R.layout.adapter_settings);
@@ -118,6 +119,9 @@ public class Settings extends AppCompatActivity {
                 break;
             case "Netherlands":
                 result = NETHERLANDS;
+                break;
+            case "Norway":
+                result = NORWAY;
                 break;
         }
         return result;

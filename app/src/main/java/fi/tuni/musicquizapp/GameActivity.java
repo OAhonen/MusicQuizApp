@@ -257,6 +257,7 @@ public class GameActivity extends AppCompatActivity {
         b1.setClickable(false);
         b2.setClickable(false);
         b3.setClickable(false);
+        exoPlayer.stop();
         afterAnswer();
     }
 
