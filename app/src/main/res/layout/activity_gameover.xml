@@ -48,7 +48,7 @@
         android:inputType="text"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="#ffffff"
+        android:textColor="#ff0000"
         android:layout_gravity="center"
         android:textAlignment="center"
         android:background="#DBDBD9"
