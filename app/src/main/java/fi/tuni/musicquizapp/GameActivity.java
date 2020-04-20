@@ -156,6 +156,12 @@ public class GameActivity extends AppCompatActivity {
         int r2 = random.nextInt(9);
         int r3 = random.nextInt(9);
         String correctAnswer = artists[turn];
+        if (!mode.equals(hideArtist)) {
+            if (!checkDoubles(r2, r3)) {
+                r2=0;
+                r3=0;
+            }
+        }
         String answer2 = artists[r2];
         String answer3 = artists[r3];
 
@@ -166,7 +172,8 @@ public class GameActivity extends AppCompatActivity {
                 r3 = random.nextInt(9);
                 if (!mode.equals(hideArtist)) {
                     if (!checkDoubles(r2, r3)) {
-                        continue;
+                        r2=0;
+                        r3=0;
                     }
                 }
                 answer2 = artists[r2];
@@ -181,7 +188,8 @@ public class GameActivity extends AppCompatActivity {
                 r3 = random.nextInt(9);
                 if (!mode.equals(hideArtist)) {
                     if (!checkDoubles(r2, r3)) {
-                        continue;
+                        r2=0;
+                        r3=0;
                     }
                 }
                 answer2 = artists[r2];
@@ -196,7 +204,8 @@ public class GameActivity extends AppCompatActivity {
                 r3 = random.nextInt(9);
                 if (!mode.equals(hideArtist)) {
                     if (!checkDoubles(r2, r3)) {
-                        continue;
+                        r2=0;
+                        r3=0;
                     }
                 }
                 answer2 = artists[r2];
@@ -215,10 +224,12 @@ public class GameActivity extends AppCompatActivity {
      * @return false/true
      */
     private boolean checkDoubles(int n, int m) {
-        if (top10Songs.get(n).getArtist().equals(top10Songs.get(m).getArtist())) {
+        if (top10Songs.get(round).getArtist().equals(top10Songs.get(n).getArtist()) ||
+                top10Songs.get(round).getArtist().equals(top10Songs.get(m).getArtist())) {
             return false;
+        } else {
+            return true;
         }
-        return true;
     }
 
     /**
